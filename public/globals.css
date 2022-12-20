@@ -6,6 +6,6 @@
 
 @layer base {
   html {
-    font-family: Poppins, system-ui, sans-serif;
+    @apply bg-background;
   }
 }
