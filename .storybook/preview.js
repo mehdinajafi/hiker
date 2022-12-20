@@ -1,4 +1,8 @@
+import { LazyMotion, domAnimation } from "framer-motion";
+import "../public/globals.css";
+
 export const parameters = {
+  layout: "fullscreen",
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
     matchers: {
@@ -6,4 +10,12 @@ export const parameters = {
       date: /Date$/,
     },
   },
-}
+};
+
+export const decorators = [
+  (Story) => (
+    <LazyMotion features={domAnimation}>
+      <Story />
+    </LazyMotion>
+  ),
+];
