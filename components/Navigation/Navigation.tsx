@@ -83,7 +83,7 @@ const MobileMenu = () => {
         fullWidth
         keepMounted
       >
-        <div className="flex h-full flex-col bg-black px-8">
+        <div className="flex h-full flex-col bg-black px-4">
           <nav className="pt-32">
             <ul className="flex list-none flex-col space-y-8 text-2xl font-extrabold text-white">
               <li>

@@ -8,7 +8,7 @@ import ArrowDownIcon from "@/public/icons/arrow_down.svg";
 const Header: React.FC = () => {
   return (
     <header className="relative">
-      <div className="relative h-[762px]">
+      <div className="relative h-[500px] md:h-[762px]">
         <Image
           src="/images/header-bg.jpg"
           width={1347}
@@ -20,7 +20,7 @@ const Header: React.FC = () => {
       </div>
       <div className="absolute inset-0 bg-linear-gradient-1" />
 
-      <div className="absolute inset-x-0 top-0 px-8 pt-8">
+      <div className="container absolute inset-x-0 top-0 p-4">
         <Navigation />
 
         <div className="relative mt-32 flex items-center justify-center">
