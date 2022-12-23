@@ -6,6 +6,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      container: {
+        center: true,
+      },
+      colors: {
+        accent: "#FBD784",
+      },
       backgroundColor: {
         background: "rgba(11, 29, 38, 1)",
       },
