@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import * as Portal from "@radix-ui/react-portal";
 import clsx from "clsx";
+import Portal from "@/components/ui/Portal";
 import Backdrop from "@/components/ui/Backdrop";
 import Slide from "@/components/ui/Slide";
 
@@ -98,7 +98,7 @@ const Drawer: React.FC<IDrawer> = (props) => {
   }
 
   return (
-    <Portal.Root asChild>
+    <Portal>
       <div
         role="presentation"
         className={clsx(
@@ -137,7 +137,7 @@ const Drawer: React.FC<IDrawer> = (props) => {
           {children}
         </Slide>
       </div>
-    </Portal.Root>
+    </Portal>
   );
 };
 
