@@ -1,5 +1,4 @@
-import { useEffect, useRef } from "react";
-import { AnimatePresence, m, Variants } from "framer-motion";
+import { m, AnimatePresence, Variants } from "framer-motion";
 
 interface IFade {
   /**
@@ -51,11 +50,6 @@ const Fade: React.FC<IFade> = (props) => {
     onExited,
   } = props;
 
-  const mounted = useRef(false);
-  useEffect(() => {
-    mounted.current = true;
-  }, []);
-
   const handleAnimationStart = (definition: string) => {
     if (onEnter && definition === "show") {
       onEnter();
@@ -88,11 +82,7 @@ const Fade: React.FC<IFade> = (props) => {
     element = null;
   }
 
-  return (
-    <AnimatePresence initial={appear || (inProp && appear && mounted.current)}>
-      {element}
-    </AnimatePresence>
-  );
+  return <AnimatePresence initial={appear}>{element}</AnimatePresence>;
 };
 
 export default Fade;

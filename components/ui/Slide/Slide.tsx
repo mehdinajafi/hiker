@@ -1,4 +1,3 @@
-import * as React from "react";
 import { m, AnimatePresence, Variants } from "framer-motion";
 
 interface ISlide {
@@ -98,11 +97,6 @@ const Slide: React.FC<ISlide> = (props) => {
     onExited,
   } = props;
 
-  const mounted = React.useRef(false);
-  React.useEffect(() => {
-    mounted.current = true;
-  }, []);
-
   const handleAnimationStart = (definition: string) => {
     if (onEnter && definition === "show") {
       onEnter();
@@ -135,11 +129,7 @@ const Slide: React.FC<ISlide> = (props) => {
     element = null;
   }
 
-  return (
-    <AnimatePresence initial={appear || (inProp && appear && mounted.current)}>
-      {element}
-    </AnimatePresence>
-  );
+  return <AnimatePresence initial={appear}>{element}</AnimatePresence>;
 };
 
 export default Slide;
