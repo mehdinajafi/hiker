@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
+import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/testing-library";
 import { expect } from "@storybook/jest";
 import Slide from "./Slide";
@@ -16,6 +16,19 @@ const meta: Meta<typeof Slide> = {
         Element
       </div>
     ),
+  },
+  parameters: {
+    controls: {
+      expanded: true,
+    },
+  },
+  argTypes: {
+    children: {
+      control: false,
+    },
+    direction: {
+      defaultValue: "right",
+    },
   },
 };
 
@@ -42,7 +55,7 @@ export const Default: StoryObj<SlideType> = {
   },
 };
 
-const UnmountOnExitComponent = (args: Args) => {
+export const UnmountOnExit: StoryFn<SlideType> = (args: Args) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleToggle = () => {
@@ -57,23 +70,25 @@ const UnmountOnExitComponent = (args: Args) => {
       >
         {isOpen ? "out" : "in"}
       </button>
-      <Slide {...args} in={isOpen} />
+      <Slide {...args} in={isOpen} unmountOnExit />
     </div>
   );
 };
-
-export const UnmountOnExit: StoryObj<SlideType> = {
-  args: {
-    in: false,
-    unmountOnExit: true,
+UnmountOnExit.argTypes = {
+  in: {
+    control: false,
   },
-  play: async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const element = canvas.queryByText(/Element/i);
+  unmountOnExit: {
+    control: false,
+  },
+};
+UnmountOnExit.play = ({ canvasElement, step }) => {
+  const canvas = within(canvasElement);
+  const element = canvas.queryByText(/Element/i);
 
+  step("in/out", async () => {
     expect(element).not.toBeInTheDocument();
     await userEvent.click(canvas.getByRole("button", { name: /in/i }));
     expect(element).not.toBeInTheDocument();
-  },
-  render: (args) => <UnmountOnExitComponent {...args} />,
+  });
 };

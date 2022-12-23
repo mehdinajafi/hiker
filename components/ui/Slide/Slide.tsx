@@ -2,11 +2,33 @@ import * as React from "react";
 import { m, AnimatePresence, Variants } from "framer-motion";
 
 interface ISlide {
+  /**
+   * If `true`, the component will transition in.
+   */
   in: boolean;
+  /**
+   * A single child content element.
+   */
   children: React.ReactNode;
+  /**
+   * Perform the enter transition when it first mounts if `in` is also `true`.
+   * Set this to `false` to disable this behavior.
+   * @default true
+   */
   appear?: boolean;
+  /**
+   * Direction the child node will enter from.
+   * @default 'right'
+   */
   direction?: "left" | "right" | "up" | "down";
+  /**
+   * By default the child component stays mounted.
+   * Set `unmountOnExit` if you'd prefer to unmount the component after it finishes exiting.
+   */
   unmountOnExit?: boolean;
+  /**
+   * className of transition component.
+   */
   className?: string;
   onClick?: () => void;
   onEnter?: () => void;
