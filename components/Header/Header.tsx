@@ -44,8 +44,8 @@ const Header: React.FC = () => {
           <div className="flex max-w-[710px] flex-col">
             <div
               className={clsx(
-                "flex items-center text-sm font-extrabold tracking-[0.375rem] text-yellow-400 md:text-base",
-                "before:mr-3 before:h-px before:w-6 before:flex-shrink-0 before:bg-yellow-400 before:content-['_']"
+                "text-overline flex items-center text-accent",
+                "before:mr-3 before:h-px before:w-6 before:flex-shrink-0 before:bg-accent before:content-['_']"
               )}
             >
               A Hiking Guide

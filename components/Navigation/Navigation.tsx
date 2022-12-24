@@ -120,13 +120,13 @@ const MobileMenu = () => {
 const DesktopNav = () => {
   return (
     <ul className="flex list-none items-center space-x-10 text-lg text-white">
-      <li className="transition-colors hover:text-gray-200">
+      <li className="text-subtitle1 transition-colors hover:text-gray-200">
         <Link href="/equipment">Equipment</Link>
       </li>
-      <li className="transition-colors hover:text-gray-200">
+      <li className="text-subtitle1 transition-colors hover:text-gray-200">
         <Link href="/about-us">About us</Link>
       </li>
-      <li className="transition-colors hover:text-gray-200">
+      <li className="text-subtitle1 transition-colors hover:text-gray-200">
         <Link href="/blog">Blog</Link>
       </li>
     </ul>

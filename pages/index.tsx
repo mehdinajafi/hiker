@@ -78,9 +78,9 @@ const Row: React.FC<IRow> = (props) => {
   return (
     <div className="grid grid-cols-12 items-center gap-x-0 md:gap-x-10">
       <div
-        className={clsx("col-span-12 row-start-1", {
-          "md:col-start-7 md:col-end-13": reverse,
-          "md:col-start-1 md:col-end-7": !reverse,
+        className={clsx("col-span-12 row-start-1 md:col-span-6", {
+          "md:col-start-7": reverse,
+          "md:col-start-1": !reverse,
         })}
       >
         <picture>
@@ -89,39 +89,37 @@ const Row: React.FC<IRow> = (props) => {
           <img
             src={"/images/" + imageName + ".jpg"}
             alt={imageAlt}
-            className="w-full"
             width={566}
             height={720}
+            className="w-full"
           />
         </picture>
       </div>
 
       <div
-        className={clsx("col-span-12", {
-          "md:col-start-1 md:col-end-7": reverse,
-          "md:col-start-7 md:col-end-13": !reverse,
+        className={clsx("col-span-12 md:col-span-6", {
+          "md:col-start-1": reverse,
+          "md:col-start-7": !reverse,
         })}
       >
-        <span className="absolute text-9xl font-bold text-white opacity-10">
+        <span className="absolute text-8xl font-bold text-white opacity-10">
           {number}
         </span>
         <div
           className={clsx(
-            "mt-20 flex items-center text-sm font-extrabold uppercase tracking-[0.375rem] text-accent md:text-base",
+            "text-overline mt-10 flex items-center text-accent",
             "before:mr-3 before:h-px before:w-6 before:flex-shrink-0 before:bg-accent before:content-['_']"
           )}
         >
           {tagline}
         </div>
-        <h3 className="mt-3 text-3xl font-semibold text-white md:text-4xl">
-          {heading}
-        </h3>
-        <p className="mt-4 text-sm font-bold leading-8 text-white">{body}</p>
+        <h4 className="heading-2xl mt-3 text-white">{heading}</h4>
+        <p className="text-body2 mt-4 max-w-md text-white">{body}</p>
         <Link
           href={href}
           className="mt-4 flex items-center space-x-4 text-accent"
         >
-          <span className="text-base font-bold md:text-lg">read more</span>
+          <span className="text-subtitle2">read more</span>
           <ArrowDownIcon className="rotate-[270deg]" />
         </Link>
       </div>

@@ -3,17 +3,17 @@ import Logo from "@/components/Logo";
 
 const Footer = () => {
   return (
-    <footer className="container grid grid-cols-12 gap-y-10 sm:gap-y-0">
+    <footer className="container grid grid-cols-12 gap-y-10 pb-10">
       <div className="col-span-full sm:col-span-4 md:col-span-5 lg:col-span-6">
         <Logo />
-        <p className="mt-6 max-w-xs text-white sm:pr-4">
+        <p className="text-subtitle2 mt-6 max-w-xs text-white sm:pr-4">
           Get out there & discover your next slope, mountain & destination!
         </p>
       </div>
 
       <div className="col-span-full sm:col-span-5 md:col-span-4 lg:col-span-4">
-        <h3 className="text-xl text-accent">More on The Blog</h3>
-        <ul className="mt-6 flex flex-col space-y-4 text-lg  text-white">
+        <h2 className="heading-xl text-accent">More on The Blog</h2>
+        <ul className="text-subtitle2 mt-6 flex flex-col space-y-4 text-white">
           <li>
             <Link href="/about-us">About MNTN</Link>
           </li>
@@ -33,12 +33,10 @@ const Footer = () => {
       </div>
 
       <div className="col-span-full sm:col-span-3 lg:col-span-2">
-        <h3 className="text-xl text-accent">More on MNTN</h3>
-        <ul className="mt-6 flex flex-col space-y-4 text-lg font-medium text-white">
+        <h2 className="heading-xl text-accent">More on MNTN</h2>
+        <ul className="text-subtitle2 mt-6 flex flex-col space-y-4 text-white">
           <li>
-            <Link className=" font-medium" href="/about-us">
-              The Team
-            </Link>
+            <Link href="/about-us">The Team</Link>
           </li>
           <li>
             <Link href="/jobs">Jobs</Link>
@@ -48,6 +46,10 @@ const Footer = () => {
           </li>
         </ul>
       </div>
+
+      <p className="text-subtitle2 col-span-12 text-center text-gray-500 md:text-start">
+        Copyright 2022 MNTN.
+      </p>
     </footer>
   );
 };
