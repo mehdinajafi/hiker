@@ -22,10 +22,10 @@ const Header: React.FC = () => {
       </div>
       <div className="absolute inset-0 bg-linear-gradient-1" />
 
-      <div className="container absolute inset-x-0 top-0 p-4">
+      <div className="absolute inset-x-0 top-0 pt-8">
         <Navigation />
 
-        <div className="relative mt-32 flex items-center justify-center">
+        <div className="container relative mt-32 flex items-center justify-center">
           <div
             className={clsx(
               "left-0 mr-8 hidden items-center space-y-8 [writing-mode:vertical-lr]",

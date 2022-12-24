@@ -9,7 +9,7 @@ import InstagramIcon from "@/public/icons/instagram.svg";
 
 const Navigation = () => {
   return (
-    <section className="flex items-center justify-between">
+    <section className="container flex items-center justify-between">
       <div className="inline-flex md:hidden">
         <MobileMenu />
       </div>

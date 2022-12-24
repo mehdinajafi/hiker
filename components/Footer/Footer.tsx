@@ -3,7 +3,7 @@ import Logo from "@/components/Logo";
 
 const Footer = () => {
   return (
-    <footer className="container grid grid-cols-12 gap-y-10 px-4 sm:gap-y-0">
+    <footer className="container grid grid-cols-12 gap-y-10 sm:gap-y-0">
       <div className="col-span-full sm:col-span-4 md:col-span-5 lg:col-span-6">
         <Logo />
         <p className="mt-6 max-w-xs text-white sm:pr-4">
