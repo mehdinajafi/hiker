@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       container: {
         center: true,
+        padding: "1rem",
       },
       colors: {
         accent: "#FBD784",
