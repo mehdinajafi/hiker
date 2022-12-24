@@ -1,4 +1,3 @@
-import Image from "next/image";
 import clsx from "clsx";
 import Navigation from "@/components/Navigation";
 import TwitterIcon from "@/public/icons/twitter.svg";
@@ -9,14 +8,17 @@ const Header: React.FC = () => {
   return (
     <header className="relative">
       <div className="relative h-[500px] md:h-[762px]">
-        <Image
-          src="/images/header-bg.jpg"
-          width={1347}
-          height={762}
-          alt="header"
-          className="absolute inset-0 h-full w-full object-cover object-[-100px] md:object-top"
-          loading="lazy"
-        />
+        <picture>
+          <source srcSet="/images/header-bg.avif" type="image/avif" />
+          <source srcSet="/images/header-bg.webp" type="image/webp" />
+          <img
+            src="/images/header-bg.jpg"
+            alt="A mountain covered with fog."
+            decoding="async"
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover object-[-100px] md:object-top"
+          />
+        </picture>
       </div>
       <div className="absolute inset-0 bg-linear-gradient-1" />
 
