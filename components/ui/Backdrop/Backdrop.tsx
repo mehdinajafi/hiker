@@ -19,6 +19,7 @@ const Backdrop: React.FC<IBackdrop> = (props) => {
       appear={mounted.current}
       onClick={props.onClick}
       className="backdrop fixed inset-0 bg-[rgb(0,0,0,50%)]"
+      aria-hidden="true"
     >
       {props.children}
     </Fade>

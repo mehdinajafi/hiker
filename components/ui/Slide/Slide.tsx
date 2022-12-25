@@ -95,6 +95,7 @@ const Slide: React.FC<ISlide> = (props) => {
     onClick,
     onEnter,
     onExited,
+    ...otherProps
   } = props;
 
   const handleAnimationStart = (definition: string) => {
@@ -120,6 +121,7 @@ const Slide: React.FC<ISlide> = (props) => {
       onClick={onClick}
       onAnimationStart={handleAnimationStart}
       onAnimationComplete={handleAnimationComplete}
+      {...otherProps}
     >
       {children}
     </m.div>

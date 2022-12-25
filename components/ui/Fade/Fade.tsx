@@ -48,6 +48,7 @@ const Fade: React.FC<IFade> = (props) => {
     onClick,
     onEnter,
     onExited,
+    ...otherProps
   } = props;
 
   const handleAnimationStart = (definition: string) => {
@@ -73,6 +74,7 @@ const Fade: React.FC<IFade> = (props) => {
       onClick={onClick}
       onAnimationStart={handleAnimationStart}
       onAnimationComplete={handleAnimationComplete}
+      {...otherProps}
     >
       {children}
     </m.div>
