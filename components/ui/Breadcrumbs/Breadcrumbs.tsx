@@ -25,7 +25,11 @@ const insertSeparators = (
     if (currentIndex < items.length - 1) {
       acc = acc.concat(
         currentItem,
-        <li className="breadcrumbs--separator [user-select:none]">
+        <li
+          aria-hidden
+          key={`separator-${currentIndex}`}
+          className="breadcrumbs--separator [user-select:none]"
+        >
           {separator}
         </li>
       );
