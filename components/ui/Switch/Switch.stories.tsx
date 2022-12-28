@@ -41,3 +41,24 @@ export const Controlled: StoryFn<SwitchType> = () => {
 
   return <Switch checked={isChecked} onCheckedChange={handleCheckedChange} />;
 };
+
+export const WithLabel: StoryFn<SwitchType> = () => {
+  const [isChecked, setIsChecked] = useState(true);
+
+  const handleCheckedChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(e.target.checked);
+  };
+
+  return (
+    <div className="flex items-center">
+      <Switch
+        id="switch-demo"
+        checked={isChecked}
+        onCheckedChange={handleCheckedChange}
+      />
+      <label htmlFor="switch-demo" className="user-select-none ml-2 text-white">
+        Label
+      </label>
+    </div>
+  );
+};
