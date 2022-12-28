@@ -46,3 +46,27 @@ export const Controlled: StoryFn<CheckboxType> = () => {
 
   return <Checkbox checked={checked} onCheckedChange={handleChange} />;
 };
+
+export const WithLabel: StoryFn<CheckboxType> = () => {
+  const [checked, setChecked] = useState(true);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(e.target.checked);
+  };
+
+  return (
+    <div className="flex items-center">
+      <Checkbox
+        id="checkbox-demo"
+        checked={checked}
+        onCheckedChange={handleChange}
+      />
+      <label
+        htmlFor="checkbox-demo"
+        className="user-select-none ml-2 text-white"
+      >
+        Label
+      </label>
+    </div>
+  );
+};
