@@ -126,10 +126,10 @@ const Drawer: React.FC<IDrawer> = (props) => {
           onEnter={handleEnter}
           unmountOnExit={!keepMounted}
           className={clsx("drawer--content fixed will-change-transform", {
-            "top-0 w-full": anchor === "top",
-            "right-0 h-full": anchor === "right",
-            "bottom-0 w-full": anchor === "bottom",
-            "left-0 h-full": anchor === "left",
+            "top-0 left-0 w-full": anchor === "top",
+            "bottom-0 left-0 w-full": anchor === "bottom",
+            "right-0 top-0 h-full": anchor === "right",
+            "left-0 top-0 h-full": anchor === "left",
             "w-full": fullWidth && (anchor === "right" || anchor === "left"),
             "h-full": fullWidth && (anchor === "top" || anchor === "bottom"),
           })}
