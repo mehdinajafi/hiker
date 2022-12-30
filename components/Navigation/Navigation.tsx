@@ -1,11 +1,12 @@
 import { useState } from "react";
 import Link from "next/link";
-import { m } from "framer-motion";
 import Logo from "@/components/Logo";
 import Drawer from "@/components/ui/Drawer";
 import AccountIcon from "@/public/icons/account.svg";
 import TwitterIcon from "@/public/icons/twitter.svg";
 import InstagramIcon from "@/public/icons/instagram.svg";
+import MenuIcon from "@/public/icons/menu.svg";
+import XIcon from "@/public/icons/x.svg";
 
 const Navigation = () => {
   return (
@@ -43,36 +44,8 @@ const MobileMenu = () => {
 
   return (
     <>
-      {/* Button has a higher z-index than the drawer */}
-      <button onClick={toggleMenu} className="relative z-[1201]">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="#fff"
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <m.line
-            animate={{ y2: isMenuOpen ? 18 : 6 }}
-            x1="5"
-            y1="6"
-            x2="19"
-            y2="6"
-          />
-          {!isMenuOpen && <line x1="5" y1="12" x2="19" y2="12" />}
-          <m.line
-            animate={{ y2: isMenuOpen ? 6 : 18 }}
-            x1="5"
-            y1="18"
-            x2="19"
-            y2="18"
-          />
-        </svg>
+      <button onClick={toggleMenu} className="text-white">
+        <MenuIcon aria-hidden="true" width="24" height="24" />
       </button>
 
       <Drawer
@@ -84,7 +57,15 @@ const MobileMenu = () => {
         keepMounted
       >
         <div className="flex h-full flex-col bg-black px-4">
-          <nav className="pt-32">
+          <button
+            onClick={toggleMenu}
+            className="mt-2 flex items-center self-start py-2 text-gray-300"
+          >
+            <XIcon aria-hidden="true" width="24" height="24" />{" "}
+            <span className="text-subtitle1 ml-2">Close</span>
+          </button>
+
+          <nav className="mt-16">
             <ul className="flex list-none flex-col space-y-8 text-2xl font-extrabold text-white">
               <li>
                 <Link href="/equipment">Equipment</Link>
