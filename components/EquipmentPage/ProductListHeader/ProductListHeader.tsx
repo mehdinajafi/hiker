@@ -37,7 +37,7 @@ const ProductListHeader: React.FC<IProductListHeader> = (props) => {
         onClose={handleFilterDrawerClose}
         hide="lg"
       >
-        <div className="h-full bg-background">
+        <div className="h-full w-72 bg-background">
           <Filters filters={filters} />
         </div>
       </Drawer>
