@@ -1,12 +1,12 @@
 import Head from "next/head";
 import Link from "next/link";
 import clsx from "clsx";
-import { NextPageWithLayout } from "@/pages/_app";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { NextPage } from "@/interfaces";
 import ArrowDownIcon from "@/public/icons/arrow_down.svg";
 
-const HomePage: NextPageWithLayout = () => {
+const HomePage: NextPage = () => {
   return (
     <main className="container mb-20 flex flex-col gap-10 md:gap-32">
       <Head>

@@ -1,16 +1,12 @@
-import { NextPage } from "next";
 import { AppProps } from "next/app";
 import { SWRConfig } from "swr";
 import { LazyMotion, domAnimation } from "framer-motion";
 import Layout from "@/components/Layout";
+import { NextPage } from "@/interfaces";
 import "@/public/globals.css";
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: React.ReactElement) => React.ReactNode;
-};
-
 type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
+  Component: NextPage;
 };
 
 const App = ({ Component, pageProps }: AppPropsWithLayout) => {
