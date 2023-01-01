@@ -15,6 +15,14 @@ module.exports = {
       },
       colors: {
         accent: "#FBD784",
+        muted: "hsl(210deg, 38%, 15%)",
+        info: "hsl(230deg,100%,69%)",
+        success: "hsl(160deg, 100%, 40%)",
+        "success-background": "hsla(160deg, 100%, 40%, 0.1)",
+        alert: "hsl(30deg, 100%, 50%)",
+        "alert-background": "hsl(40deg 13% 13%)",
+        error: "hsl(340deg, 95%, 60%)",
+        "error-background": "hsla(340deg, 95%, 43%, 0.1)",
       },
       backgroundColor: {
         background: "rgba(11, 29, 38, 1)",
