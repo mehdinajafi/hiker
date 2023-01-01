@@ -25,6 +25,16 @@ export interface ICategory {
   title: string;
 }
 
+export interface IPost {
+  id: string;
+  time: number;
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  slug: string;
+}
+
 export type NextPage<P = {}, IP = P> = NextJSPage<P, IP> & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
 };

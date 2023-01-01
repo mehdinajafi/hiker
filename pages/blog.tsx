@@ -1,19 +1,28 @@
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import PostCard from "@/components/PostCard";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
+import getPosts from "@/lib/api/blog/getPosts";
+import { IPost, NextPage } from "@/interfaces";
 
-const post = {
-  time: 1671957358231,
-  title: "What level of  hiker are you?",
-  description:
-    "Determining what level of hiker you are can be an important tool when planning future hikes....",
-  image: "/images/header-bg.avif",
-  imageAlt: "Mountaineering runs on the mountain.",
-  slug: "/blog/what-level-of-hiker-are-you-?",
+interface IBlogPage {
+  posts: IPost[];
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const posts = await getPosts();
+
+  return {
+    props: {
+      posts: JSON.parse(JSON.stringify(posts)),
+    },
+  };
 };
 
-const BlogPage = () => {
+const BlogPage: NextPage<IBlogPage> = (props) => {
+  const { posts } = props;
+
   return (
     <main>
       <Head>
@@ -33,17 +42,11 @@ const BlogPage = () => {
       </div>
 
       <div className="container my-16 grid grid-cols-12 gap-y-10 gap-x-0 md:gap-x-10">
-        <div className="col-span-12 lg:col-span-6">
-          <PostCard {...post} />
-        </div>
-
-        <div className="col-span-12 lg:col-span-6">
-          <PostCard {...post} />
-        </div>
-
-        <div className="col-span-12 lg:col-span-6">
-          <PostCard {...post} />
-        </div>
+        {posts.map((post) => (
+          <div key={post.id} className="col-span-12 lg:col-span-6">
+            <PostCard {...post} />
+          </div>
+        ))}
       </div>
     </main>
   );
