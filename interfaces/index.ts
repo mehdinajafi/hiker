@@ -30,9 +30,15 @@ export interface IPost {
   time: number;
   title: string;
   description: string;
+  body: string;
   image: string;
   imageAlt: string;
   slug: string;
+  author: {
+    id: string;
+    name: string;
+  };
+  headers: { id: string; title: string }[];
 }
 
 export type NextPage<P = {}, IP = P> = NextJSPage<P, IP> & {

@@ -34,7 +34,7 @@ const PostCard: React.FC<IPostCard> = (props) => {
         <p className="text-body2 mt-4 text-white">{description}</p>
         <div className="mt-4">
           <Link
-            href={slug}
+            href={"/blog/" + slug}
             className="group/link inline-flex items-center space-x-4 text-accent"
           >
             <span className="text-subtitle2">read more</span>
