@@ -11,6 +11,7 @@ export interface IProduct {
     }[];
   };
   title: string;
+  description: string;
   rating: {
     count: number;
     rate: number;
