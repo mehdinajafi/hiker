@@ -35,8 +35,9 @@ const Button: React.FC<IButton> = (props) => {
       className={clsx(
         "inline-flex items-center",
         "rounded-md py-2 px-4",
+        "disabled:opacity-30",
         {
-          "bg-gray-700 text-white hover:bg-gray-800 active:bg-gray-900":
+          "bg-gray-700 text-white hover:bg-gray-800 active:bg-gray-900 disabled:hover:bg-gray-700":
             color === "gray",
         },
         className
