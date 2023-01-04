@@ -1,10 +1,15 @@
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import useSWRMutation from "swr/mutation";
+import useStore from "@/store";
 import Divider from "@/components/ui/Divider";
 import Alert from "@/components/ui/Alert";
-import { IProduct } from "@/interfaces";
 import getProduct from "@/lib/api/products/getProduct";
+import Button from "@/components/ui/Button";
+import sendRequest from "@/utils/sendRequest";
+import { IProduct } from "@/interfaces";
+import PlusIcon from "@/public/icons/plus.svg";
 import StarIcon from "@/public/icons/star-fill.svg";
 
 interface IProductPage {
@@ -24,6 +29,25 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const ProductPage: React.FC<IProductPage> = (props) => {
   const { product } = props;
+
+  const setCartId = useStore((store) => store.setCartId);
+  const cartId = useStore((store) => store.cart.id);
+
+  const { trigger, isMutating } = useSWRMutation<{
+    status: number;
+    cart: { cartId: string };
+  }>("/api/cart/add", sendRequest);
+
+  const addToCart = async () => {
+    const data = await trigger({
+      cartId,
+      productId: product._id,
+    });
+
+    if (!cartId && data) {
+      setCartId(data.cart.cartId);
+    }
+  };
 
   return (
     <main className="mb-16 mt-5 md:my-32">
@@ -62,6 +86,18 @@ const ProductPage: React.FC<IProductPage> = (props) => {
               £{Number(product.price).toFixed(2)}
             </div>
           )}
+
+          <div className="mt-4">
+            <Button
+              color="gray"
+              disabled={isMutating}
+              startIcon={<PlusIcon width={24} height={24} />}
+              onClick={addToCart}
+              className="font-medium"
+            >
+              Add To Cart
+            </Button>
+          </div>
         </div>
 
         <div className="col-span-12 md:col-span-8">
