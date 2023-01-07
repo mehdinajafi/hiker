@@ -1,12 +1,16 @@
 import { useState } from "react";
 import Link from "next/link";
+import useSWR from "swr";
 import Logo from "@/components/Logo";
 import Drawer from "@/components/ui/Drawer";
-import AccountIcon from "@/public/icons/account.svg";
+import Badge from "@/components/ui/Badge";
+import useStore from "@/store";
+import { ICart } from "@/interfaces";
 import TwitterIcon from "@/public/icons/twitter.svg";
 import InstagramIcon from "@/public/icons/instagram.svg";
 import MenuIcon from "@/public/icons/menu.svg";
 import XIcon from "@/public/icons/x.svg";
+import CartIcon from "@/public/icons/cart.svg";
 
 const Navigation = () => {
   return (
@@ -24,7 +28,7 @@ const Navigation = () => {
       </div>
 
       <div className="inline-flex">
-        <AccountManager />
+        <Cart />
       </div>
     </section>
   );
@@ -114,13 +118,19 @@ const DesktopNav = () => {
   );
 };
 
-// ------------------------ Account Manager ------------------------ //
-const AccountManager = () => {
+// ------------------------ Cart ------------------------ //
+const Cart = () => {
+  const cartId = useStore((store) => store.cart.id);
+  const { data } = useSWR<{ cart: ICart }>(
+    cartId ? `/api/cart?cartId=${cartId}` : null
+  );
+
   return (
-    <button className="flex items-center space-x-2 text-white">
-      <AccountIcon />
-      <span className="hidden sm:inline">Account</span>
-    </button>
+    <Link href="/cart">
+      <Badge badgeContent={(data && data.cart && data.cart.totalQuantity) || 0}>
+        <CartIcon className="h-5 w-5" />
+      </Badge>
+    </Link>
   );
 };
 
