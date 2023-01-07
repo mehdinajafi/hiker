@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import Link from "next/link";
 import React from "react";
 
 interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -18,6 +19,11 @@ interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
    * The content of the component.
    */
   children?: React.ReactNode;
+  /**
+   * The URL to link to when the button is clicked.
+   * If defined, an a element will be used as the root node.
+   */
+  href?: string;
 }
 
 const Button: React.FC<IButton> = (props) => {
@@ -29,29 +35,33 @@ const Button: React.FC<IButton> = (props) => {
     className,
     ...otherProps
   } = props;
+  let Component: React.ElementType = "button";
+  if (otherProps.href) {
+    Component = Link;
+  }
 
   return (
-    <button
+    <Component
+      {...otherProps}
       className={clsx(
-        "inline-flex items-center",
+        "inline-flex items-center justify-center",
         "rounded-md py-2 px-4",
-        "disabled:opacity-30",
+        "transition-transform active:scale-95 disabled:opacity-30",
         {
-          "bg-gray-700 text-white hover:bg-gray-800 active:bg-gray-900 disabled:hover:bg-gray-700":
+          "bg-gray-700 text-white hover:bg-gray-800 disabled:hover:bg-gray-700":
             color === "gray",
-          "bg-rose-700 text-white hover:bg-rose-800 active:bg-rose-900 disabled:hover:bg-rose-700":
+          "bg-rose-700 text-white hover:bg-rose-800 disabled:hover:bg-rose-700":
             color === "error",
-          "bg-blue-700 text-white hover:bg-blue-800 active:bg-blue-900 disabled:hover:bg-blue-700":
+          "bg-accent text-gray-900 hover:bg-accent-dark disabled:hover:bg-accent":
             color === "primary",
         },
         className
       )}
-      {...otherProps}
     >
       {startIcon && <span className="mr-2">{startIcon}</span>}
       {children}
       {endIcon && <span className="ml-2">{endIcon}</span>}
-    </button>
+    </Component>
   );
 };
 
