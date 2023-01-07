@@ -5,7 +5,7 @@ interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * The color of the component.
    */
-  color: "gray";
+  color: "gray" | "error" | "primary";
   /**
    * Element placed before the children.
    */
@@ -39,6 +39,10 @@ const Button: React.FC<IButton> = (props) => {
         {
           "bg-gray-700 text-white hover:bg-gray-800 active:bg-gray-900 disabled:hover:bg-gray-700":
             color === "gray",
+          "bg-rose-700 text-white hover:bg-rose-800 active:bg-rose-900 disabled:hover:bg-rose-700":
+            color === "error",
+          "bg-blue-700 text-white hover:bg-blue-800 active:bg-blue-900 disabled:hover:bg-blue-700":
+            color === "primary",
         },
         className
       )}
