@@ -45,6 +45,18 @@ const getCart = async ({ cartId }: IOptions) => {
         $project: {
           items: 1,
           totalQuantity: { $sum: "$items.quantity" },
+          totalPrice: {
+            $reduce: {
+              input: "$items",
+              initialValue: 0,
+              in: {
+                $add: [
+                  "$$value",
+                  { $multiply: ["$$this.quantity", "$$this.product.price"] },
+                ],
+              },
+            },
+          },
         },
       },
     ]);

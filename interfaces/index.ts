@@ -45,6 +45,7 @@ export interface IPost {
 export interface ICart {
   _id: string;
   totalQuantity: number;
+  totalPrice: number;
   items: ICartItem[];
 }
 

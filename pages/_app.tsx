@@ -1,6 +1,7 @@
 import { AppProps } from "next/app";
 import { SWRConfig } from "swr";
 import { LazyMotion, domAnimation } from "framer-motion";
+import ToastContainer from "@/components/ui/ToastContainer";
 import Layout from "@/components/Layout";
 import { NextPage } from "@/interfaces";
 import "@/public/globals.css";
@@ -16,10 +17,14 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
     <LazyMotion features={domAnimation}>
       <SWRConfig
         value={{
-          fetcher: (res, init) => fetch(res, init).then((res) => res.json()),
-          fallback: pageProps.fallback,
+          fetcher: async (url) => {
+            const res = await fetch(url);
+            const data = await res.json();
+            return data;
+          },
         }}
       >
+        <ToastContainer />
         {getLayout(<Component {...pageProps} />)}
       </SWRConfig>
     </LazyMotion>
