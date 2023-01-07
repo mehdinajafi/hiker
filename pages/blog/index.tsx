@@ -43,7 +43,7 @@ const BlogPage: NextPage<IBlogPage> = (props) => {
 
       <div className="container my-16 grid grid-cols-12 gap-y-10 gap-x-0 md:gap-x-10">
         {posts.map((post) => (
-          <div key={post.id} className="col-span-12 lg:col-span-6">
+          <div key={post._id} className="col-span-12 lg:col-span-6">
             <PostCard {...post} />
           </div>
         ))}

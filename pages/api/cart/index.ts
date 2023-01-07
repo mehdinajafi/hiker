@@ -5,7 +5,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const cartId = req.query.cartId as string;
     const cart = await getCart({ cartId });
-    res.json({ status: 200, cart });
+    res.json({ status: 200, cart: cart || null });
   } catch (error) {
     throw Error(`Error in create new cart: ${error}`);
   }

@@ -1,19 +1,35 @@
-import { ObjectId } from "mongodb";
-import mongoPromise from "@/lib/mongodb";
-import { dbName } from "@/constants";
-import { ICartItem } from "@/interfaces";
+import db from "@/lib/db";
+import Cart from "@/models/Cart";
 
 interface IOptions {
-  cartId: ObjectId;
-  productId: ObjectId;
+  cartId: string;
+  productId: string;
 }
 
 const addToCart = async ({ cartId, productId }: IOptions) => {
   try {
-    const db = await mongoPromise.db(dbName);
+    await db.connect();
 
-    let update = await db.collection<ICartItem>("cart").findOneAndUpdate(
-      { _id: new ObjectId(cartId), "items.productId": new ObjectId(productId) },
+    const cart = await Cart.findById(cartId);
+
+    // If the cart is not found, create new cart and add product to it
+    if (!cart) {
+      const newCart = new Cart({
+        items: [{ productId, quantity: 1 }],
+      });
+
+      const cart = await newCart.save();
+
+      await db.disconnect();
+
+      return {
+        cartId: cart._id,
+      };
+    }
+
+    // Check if product is exist in cart items, if exist increament its quantity
+    let productExist = await Cart.findOneAndUpdate(
+      { _id: cart._id, "items.productId": productId },
       {
         $inc: {
           "items.$.quantity": 1,
@@ -21,19 +37,26 @@ const addToCart = async ({ cartId, productId }: IOptions) => {
       }
     );
 
-    if (!update.value) {
-      update = await db.collection<ICartItem>("cart").findOneAndUpdate(
-        { _id: new ObjectId(cartId) },
+    // Add product to cart
+    if (!productExist) {
+      await Cart.findOneAndUpdate(
+        { _id: cart._id },
         {
-          $push: {
-            items: { productId: new ObjectId(productId), quantity: 1 },
+          $addToSet: {
+            items: {
+              productId: productId,
+              quantity: 1,
+            },
           },
-        },
-        { upsert: true }
+        }
       );
     }
 
-    return { cartId: update.lastErrorObject?.upserted || update.value?._id };
+    await db.disconnect();
+
+    return {
+      cartId: cart._id,
+    };
   } catch (error) {
     throw Error(`Error in addToCart in mongodb: ${error}`);
   }

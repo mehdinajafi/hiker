@@ -1,6 +1,5 @@
-import { ObjectId } from "mongodb";
-import mongoPromise from "@/lib/mongodb";
-import { dbName } from "@/constants";
+import db from "@/lib/db";
+import Cart from "@/models/Cart";
 
 interface IOptions {
   cartId: string;
@@ -10,13 +9,14 @@ interface IOptions {
 
 const updateCart = async ({ cartId, productId, quantity }: IOptions) => {
   try {
-    const db = await mongoPromise.db(dbName);
-    await db.collection("cart").updateOne(
-      { _id: new ObjectId(cartId), "items.productId": new ObjectId(productId) },
+    await db.connect();
+    await Cart.updateOne(
+      { _id: cartId, "items.productId": productId },
       {
         $set: { "items.$.quantity": quantity },
       }
     );
+    await db.disconnect();
   } catch (error) {
     throw Error(`Error in updateCart in mongodb: ${error}`);
   }

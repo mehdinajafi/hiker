@@ -1,11 +1,11 @@
-import { dbName } from "@/constants";
-import { IProduct } from "@/interfaces";
-import mongoPromise from "@/lib/mongodb";
+import db from "@/lib/db";
+import Product from "@/models/Product";
 
 const getProduct = async (slug: string | string[]) => {
   try {
-    const db = await mongoPromise.db(dbName);
-    const product = await db.collection<IProduct>("products").findOne({ slug });
+    await db.connect();
+    const product = await Product.findOne({ slug });
+    await db.disconnect();
     return product;
   } catch (error) {
     throw Error(`Something went wrong in getting product: ${error}`);

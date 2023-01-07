@@ -1,6 +1,6 @@
-import mongoPromise from "@/lib/mongodb";
+import db from "@/lib/db";
+import Product from "@/models/Product";
 import { IProduct } from "@/interfaces";
-import { dbName } from "@/constants";
 
 interface IOptions {
   category?: string | string[];
@@ -31,12 +31,10 @@ const getProducts = async (options: IOptions) => {
       filters.status = "marketable";
     }
 
-    const client = await mongoPromise;
-    const products = await client
-      .db(dbName)
-      .collection<IProduct>("products")
-      .find({ ...filters })
-      .toArray();
+    await db.connect();
+    const products = await Product.find({ ...filters });
+    await db.disconnect();
+
     return products;
   } catch (error) {
     throw Error(`Something went wrong in getting products: ${error}`);

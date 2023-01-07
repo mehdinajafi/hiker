@@ -1,9 +1,7 @@
-import { ObjectId } from "mongodb";
 import { NextPage as NextJSPage } from "next";
 
 export interface IProduct {
-  _id: ObjectId;
-  id: number;
+  _id: string;
   status: "out_of_stock" | "marketable";
   images: {
     main: string;
@@ -29,7 +27,7 @@ export interface ICategory {
 }
 
 export interface IPost {
-  id: string;
+  _id: string;
   time: number;
   title: string;
   description: string;
@@ -44,9 +42,19 @@ export interface IPost {
   headers: { id: string; title: string }[];
 }
 
+export interface ICart {
+  _id: string;
+  totalQuantity: number;
+  items: ICartItem[];
+}
+
 export interface ICartItem {
-  _id: ObjectId;
-  items: { productId: ObjectId; quantity: number }[];
+  _id: string;
+  productId: string;
+  product: IProduct;
+  quantity: number;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export type NextPage<P = {}, IP = P> = NextJSPage<P, IP> & {

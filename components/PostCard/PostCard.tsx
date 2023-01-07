@@ -1,18 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import format from "date-fns/format";
+import { IPost } from "@/interfaces";
 import ArrowDownIcon from "@/public/icons/arrow_down.svg";
 
-interface IPostCard {
-  time: number;
-  title: string;
-  description: string;
-  image: string;
-  imageAlt: string;
-  slug: string;
-}
-
-const PostCard: React.FC<IPostCard> = (props) => {
+const PostCard: React.FC<IPost> = (props) => {
   const { time, title, description, image, imageAlt, slug } = props;
 
   return (
