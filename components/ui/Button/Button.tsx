@@ -6,7 +6,11 @@ interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * The color of the component.
    */
-  color: "gray" | "error" | "primary";
+  color?: "gray" | "error" | "primary";
+  /**
+   * The variant to use.
+   */
+  variant?: "contained" | "text";
   /**
    * Element placed before the children.
    */
@@ -29,6 +33,7 @@ interface IButton extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 const Button: React.FC<IButton> = (props) => {
   const {
     color = "gray",
+    variant = "contained",
     startIcon,
     endIcon,
     children,
@@ -45,15 +50,17 @@ const Button: React.FC<IButton> = (props) => {
       {...otherProps}
       className={clsx(
         "inline-flex items-center justify-center",
-        "rounded-md py-2 px-4",
+        "rounded-md text-sm font-semibold",
         "transition-transform active:scale-95 disabled:opacity-30",
         {
+          "py-2 px-4": variant === "contained",
+          "text-gray-100": variant === "text",
           "bg-gray-700 text-white hover:bg-gray-800 disabled:hover:bg-gray-700":
-            color === "gray",
+            color === "gray" && variant === "contained",
           "bg-rose-700 text-white hover:bg-rose-800 disabled:hover:bg-rose-700":
-            color === "error",
+            color === "error" && variant === "contained",
           "bg-accent text-gray-900 hover:bg-accent-dark disabled:hover:bg-accent":
-            color === "primary",
+            color === "primary" && variant === "contained",
         },
         className
       )}
