@@ -39,13 +39,17 @@ const getCart = async ({ cartId }: IOptions) => {
           items: {
             $push: "$items",
           },
+          shippingCost: {
+            $sum: "$shippingCost",
+          },
+          information: {
+            $first: "$information",
+          },
         },
       },
       {
-        $project: {
-          items: 1,
-          totalQuantity: { $sum: "$items.quantity" },
-          totalPrice: {
+        $addFields: {
+          subTotalPrice: {
             $reduce: {
               input: "$items",
               initialValue: 0,
@@ -56,6 +60,14 @@ const getCart = async ({ cartId }: IOptions) => {
                 ],
               },
             },
+          },
+        },
+      },
+      {
+        $addFields: {
+          totalQuantity: { $sum: "$items.quantity" },
+          totalPrice: {
+            $sum: ["$subTotalPrice", "$shippingCost"],
           },
         },
       },

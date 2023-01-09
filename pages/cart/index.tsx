@@ -54,12 +54,12 @@ const CartPage = () => {
                 <div className="flex justify-between">
                   <div className="text-base">Total Price:</div>
                   <div className="ml-4 text-2xl font-bold">
-                    ${data.cart.totalPrice}
+                    ${data.cart.subTotalPrice}
                   </div>
                 </div>
 
                 <div>
-                  <Button color="primary" href="/cart/checkout">
+                  <Button color="primary" href="/cart/information">
                     Checkout
                   </Button>
                 </div>

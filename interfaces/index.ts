@@ -46,7 +46,10 @@ export interface ICart {
   _id: string;
   totalQuantity: number;
   totalPrice: number;
+  subTotalPrice: number;
+  shippingCost: number;
   items: ICartItem[];
+  information?: ICartInformation;
 }
 
 export interface ICartItem {
@@ -56,6 +59,18 @@ export interface ICartItem {
   quantity: number;
   createdAt: string;
   updatedAt: string;
+}
+
+export interface ICartInformation {
+  emailOrPhoneNumber: string;
+  country: string;
+  firstName: string;
+  lastName: string;
+  address: string;
+  address2: string;
+  city: string;
+  province: string;
+  postalCode: string;
 }
 
 export type NextPage<P = {}, IP = P> = NextJSPage<P, IP> & {
