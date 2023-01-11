@@ -19,7 +19,10 @@ let ItemSchema = new mongoose.Schema(
 
 const cartSchema = new mongoose.Schema({
   items: [ItemSchema],
-  shippingCost: Number,
+  shippingId: {
+    default: 1,
+    type: Number,
+  },
   information: {
     required: false,
     type: {

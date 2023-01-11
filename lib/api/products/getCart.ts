@@ -39,12 +39,20 @@ const getCart = async ({ cartId }: IOptions) => {
           items: {
             $push: "$items",
           },
-          shippingCost: {
-            $sum: "$shippingCost",
-          },
           information: {
             $first: "$information",
           },
+          shippingId: {
+            $first: "$shippingId",
+          },
+        },
+      },
+      {
+        $lookup: {
+          from: "shippingmethods",
+          localField: "shippingId",
+          foreignField: "_id",
+          as: "shipment",
         },
       },
       {
@@ -61,6 +69,15 @@ const getCart = async ({ cartId }: IOptions) => {
               },
             },
           },
+          shippingCost: {
+            $reduce: {
+              input: "$shipment",
+              initialValue: 0,
+              in: {
+                $add: ["$$value", "$$this.price"],
+              },
+            },
+          },
         },
       },
       {
@@ -72,6 +89,7 @@ const getCart = async ({ cartId }: IOptions) => {
         },
       },
     ]);
+
     await db.disconnect();
     return cart[0];
   } catch (error) {

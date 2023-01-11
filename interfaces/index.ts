@@ -50,6 +50,8 @@ export interface ICart {
   shippingCost: number;
   items: ICartItem[];
   information?: ICartInformation;
+  shippingId?: number;
+  shipment?: IShippingMethod[];
 }
 
 export interface ICartItem {
@@ -71,6 +73,13 @@ export interface ICartInformation {
   city: string;
   province: string;
   postalCode: string;
+}
+
+export interface IShippingMethod {
+  _id: number;
+  title: string;
+  price: number;
+  description: string;
 }
 
 export type NextPage<P = {}, IP = P> = NextJSPage<P, IP> & {

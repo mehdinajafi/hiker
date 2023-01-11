@@ -11,12 +11,10 @@ interface IOptions {
 const saveInformationInCart = async ({ cartId, information }: IOptions) => {
   try {
     await db.connect();
-    const shippingCost = 200;
     await Cart.updateOne(
       { _id: cartId },
       {
         $set: {
-          shippingCost,
           information,
         },
       }
