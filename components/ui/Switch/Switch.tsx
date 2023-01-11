@@ -47,7 +47,7 @@ const Switch: React.FC<ISwitch> = (props) => {
       <button
         role="switch"
         aria-checked={isChecked}
-        className="relative inline-flex h-5 w-10 items-center"
+        className="relative inline-flex h-5 w-10 shrink-0 items-center"
         onClick={handleClick}
       >
         <span

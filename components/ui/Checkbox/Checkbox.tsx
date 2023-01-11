@@ -59,7 +59,7 @@ const Checkbox: React.FC<ICheckbox> = (props) => {
         role="checkbox"
         aria-checked={isChecked}
         className={clsx(
-          "user-select-none inline-flex h-5 w-5 items-center justify-center rounded-sm border",
+          "user-select-none inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-sm border",
           {
             "border-gray-500": !isChecked,
             "border-accent bg-accent text-black": isChecked,
