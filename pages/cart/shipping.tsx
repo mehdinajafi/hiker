@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import useSWR from "swr";
 import useSWRMutation from "swr/mutation";
@@ -15,7 +16,6 @@ import ChevronLeftIcon from "@/public/icons/chevron-left.svg";
 import Spinner from "@/components/ui/Spinner";
 import Alert from "@/components/ui/Alert";
 import sendRequest from "@/utils/sendRequest";
-import { useRouter } from "next/router";
 
 const CheckoutPage = () => {
   const router = useRouter();
@@ -78,7 +78,7 @@ const CheckoutPage = () => {
         <title>Shipping - MNTN</title>
       </Head>
 
-      <main className="container mt-8 mb-20">
+      <main className="container mb-20">
         <PageHeader>
           <PageHeader.Title>Shipping</PageHeader.Title>
           <PageHeader.Breadcrumbs>
@@ -174,7 +174,5 @@ const CheckoutPage = () => {
     </>
   );
 };
-
-const ShippingMethods = () => {};
 
 export default CheckoutPage;

@@ -77,7 +77,7 @@ const CheckoutPage = () => {
         <title>Information - MNTN</title>
       </Head>
 
-      <main className="container mt-8 mb-20">
+      <main className="container mb-20">
         <PageHeader>
           <PageHeader.Title>Information</PageHeader.Title>
           <PageHeader.Breadcrumbs>

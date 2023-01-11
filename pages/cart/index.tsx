@@ -1,11 +1,10 @@
 import Head from "next/head";
-import Link from "next/link";
 import useSWR from "swr";
 import useStore from "@/store";
-import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import CartTable from "@/components/CartPage/CartTable";
 import ClientSide from "@/components/ClientSide";
 import Button from "@/components/ui/Button";
+import PageHeader from "@/components/PageHeader";
 import { ICart } from "@/interfaces";
 
 const CartPage = () => {
@@ -22,17 +21,13 @@ const CartPage = () => {
       </Head>
 
       <main className="container mb-20">
-        <div className="mt-8">
-          <h2 className="heading-2xl text-white">Equipment</h2>
-          <div className="mt-4 text-gray-500">
-            <Breadcrumbs>
-              <Link href="/" className="text-gray-200">
-                Home
-              </Link>
-              <div>Cart</div>
-            </Breadcrumbs>
-          </div>
-        </div>
+        <PageHeader>
+          <PageHeader.Title>Equipment</PageHeader.Title>
+          <PageHeader.Breadcrumbs>
+            <PageHeader.Link href="/">Home</PageHeader.Link>
+            <PageHeader.Link disabled>Cart</PageHeader.Link>
+          </PageHeader.Breadcrumbs>
+        </PageHeader>
 
         <div className="mt-8 grid grid-cols-12 gap-y-10 md:gap-10">
           <div className="col-span-12">

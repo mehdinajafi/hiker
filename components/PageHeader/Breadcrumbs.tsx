@@ -8,7 +8,7 @@ const PageHeaderBreadcrumbs: React.FC<IPageHeaderBreadcrumbs> = ({
   children,
 }) => {
   return (
-    <div className="mt-4 text-gray-500">
+    <div className="text-gray-500">
       <Breadcrumbs>{children}</Breadcrumbs>
     </div>
   );

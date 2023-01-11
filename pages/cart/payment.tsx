@@ -39,7 +39,7 @@ const CheckoutPage = () => {
         <title>Payment - MNTN</title>
       </Head>
 
-      <main className="container mt-8 mb-20">
+      <main className="container mb-20">
         <PageHeader>
           <PageHeader.Title>Payment</PageHeader.Title>
           <PageHeader.Breadcrumbs>

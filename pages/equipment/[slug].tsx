@@ -69,8 +69,8 @@ const ProductPage: React.FC<IProductPage> = (props) => {
         <title>{product.title} - MNTN</title>
       </Head>
 
-      <main className="mb-16 mt-5 md:my-32">
-        <article className="container grid grid-cols-12 gap-y-10">
+      <main className="container mb-16 mt-5 md:my-32">
+        <article className="grid grid-cols-12 gap-y-10">
           <div className="col-span-12 row-start-2 md:col-span-4 md:row-start-1">
             <h2 className="heading-2xl">{product.title}</h2>
 
