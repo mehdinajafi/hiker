@@ -28,7 +28,7 @@ const insertSeparators = (
         <li
           aria-hidden
           key={`separator-${currentIndex}`}
-          className="breadcrumbs--separator [user-select:none]"
+          className="breadcrumbs--separator user-select-none mx-2"
         >
           {separator}
         </li>
@@ -54,7 +54,7 @@ const Breadcrumbs: React.FC<IBreadcrumb> = (props) => {
 
   return (
     <nav className={clsx("breadcrumbs--root", className)}>
-      <ol className="breadcrumbs--ol flex space-x-2">
+      <ol className="breadcrumbs--ol flex">
         {insertSeparators(allItems, separator)}
       </ol>
     </nav>
