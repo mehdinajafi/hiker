@@ -13,6 +13,7 @@ import useStore from "@/store";
 import sendRequest from "@/utils/sendRequest";
 import { ICart } from "@/interfaces";
 import ChevronLeftIcon from "@/public/icons/chevron-left.svg";
+import OrderSummery from "@/components/CartPage/OrderSummery";
 
 const validationSchema = yup.object({
   emailOrPhoneNumber: yup
@@ -86,7 +87,17 @@ const CheckoutPage = () => {
           </PageHeader.Breadcrumbs>
         </PageHeader>
 
-        <CheckoutLayout hideShippingCost>
+        <CheckoutLayout
+          orderSummery={
+            <OrderSummery
+              hideShippingCost
+              items={data?.cart.items}
+              shippingCost={data?.cart.shippingCost}
+              subTotalPrice={data?.cart.subTotalPrice}
+              totalPrice={data?.cart.totalPrice}
+            />
+          }
+        >
           <form onSubmit={formik.handleSubmit}>
             <fieldset>
               <legend className="font-semibold">Contact information</legend>
