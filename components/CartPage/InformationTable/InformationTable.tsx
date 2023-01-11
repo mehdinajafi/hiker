@@ -63,16 +63,26 @@ const InformationRow: React.FC<IInformationRow> = (props) => {
   const { label, content, href } = props;
 
   return (
-    <div role="row" className="flex items-center py-4">
-      <div className="flex grow items-center text-sm">
-        <div role="rowheader" className="basis-28 text-gray-400">
-          {label}
-        </div>
-        <div role="cell">{content}</div>
+    <div
+      role="row"
+      className="grid grid-cols-12 grid-rows-[min-content_1fr] py-4 sm:grid-rows-1"
+    >
+      <div
+        role="rowheader"
+        className="col-span-6 mb-2 text-sm text-gray-400 sm:col-span-3 sm:mb-0"
+      >
+        {label}
       </div>
 
-      <div className="ml-2 text-xs text-accent-dark">
+      <div className="col-span-6 text-end text-xs text-accent-dark sm:col-span-2">
         <Link href={href}>Change</Link>
+      </div>
+
+      <div
+        role="cell"
+        className="col-span-full text-sm sm:col-span-7 sm:col-start-4 sm:row-start-1"
+      >
+        {content}
       </div>
     </div>
   );

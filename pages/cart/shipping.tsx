@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import useSWR from "swr";
 import useSWRMutation from "swr/mutation";
+import clsx from "clsx";
 import useStore from "@/store";
 import PageHeader from "@/components/PageHeader";
 import CheckoutLayout from "@/components/CartPage/CheckoutLayout";
@@ -149,7 +150,21 @@ const CheckoutPage = () => {
             )}
           </fieldset>
 
-          <div className="mt-8 flex items-center justify-between">
+          <div
+            className={clsx(
+              "mt-8 flex flex-col justify-between space-y-6",
+              "sm:flex-row-reverse sm:items-center sm:space-y-0"
+            )}
+          >
+            <Button
+              type="submit"
+              color="primary"
+              disabled={methodIsMutating || !shippingId}
+              onClick={goToPaymentStep}
+            >
+              Continue to payment
+            </Button>
+
             <Button
               type="button"
               startIcon={<ChevronLeftIcon />}
@@ -158,15 +173,6 @@ const CheckoutPage = () => {
               href="/cart/information"
             >
               Return to information
-            </Button>
-
-            <Button
-              type="submit"
-              color="primary"
-              disabled={methodIsMutating || !shippingId}
-              onClick={goToPaymentStep}
-            >
-              Continue to payment
             </Button>
           </div>
         </CheckoutLayout>

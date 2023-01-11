@@ -5,6 +5,7 @@ import * as yup from "yup";
 import useSWR from "swr";
 import useSWRMutation from "swr/mutation";
 import { toast } from "react-toastify";
+import clsx from "clsx";
 import PageHeader from "@/components/PageHeader";
 import TextField from "@/components/ui/TextField";
 import Button from "@/components/ui/Button";
@@ -255,7 +256,20 @@ const CheckoutPage = () => {
               </div>
             </fieldset>
 
-            <div className="mt-8 flex items-center justify-between">
+            <div
+              className={clsx(
+                "mt-8 flex flex-col justify-between space-y-6",
+                "sm:flex-row-reverse sm:items-center sm:space-y-0"
+              )}
+            >
+              <Button
+                type="submit"
+                color="primary"
+                disabled={formik.isSubmitting}
+              >
+                Continue to shipping
+              </Button>
+
               <Button
                 type="button"
                 startIcon={<ChevronLeftIcon />}
@@ -263,14 +277,6 @@ const CheckoutPage = () => {
                 href="/cart"
               >
                 Return to cart
-              </Button>
-
-              <Button
-                type="submit"
-                color="primary"
-                disabled={formik.isSubmitting}
-              >
-                Continue to shipping
               </Button>
             </div>
           </form>

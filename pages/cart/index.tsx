@@ -37,7 +37,7 @@ const CartPage = () => {
           </div>
 
           {data && data.cart && data.cart.items.length !== 0 && (
-            <div className="col-span-3">
+            <div className="col-span-12 md:col-span-3">
               <div className="flex flex-col space-y-4">
                 <div className="flex justify-between">
                   <div className="text-base">Total Items:</div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import clsx from "clsx";
 import useStore from "@/store";
 import PageHeader from "@/components/PageHeader";
 import CheckoutLayout from "@/components/CartPage/CheckoutLayout";
@@ -97,7 +98,16 @@ const CheckoutPage = () => {
             </div>
           </fieldset>
 
-          <div className="mt-8 flex items-center justify-between">
+          <div
+            className={clsx(
+              "mt-8 flex flex-col justify-between space-y-6",
+              "sm:flex-row-reverse sm:items-center sm:space-y-0"
+            )}
+          >
+            <Button type="submit" color="primary">
+              Pay
+            </Button>
+
             <Button
               type="button"
               startIcon={<ChevronLeftIcon />}
@@ -106,10 +116,6 @@ const CheckoutPage = () => {
               href="/cart/shipping"
             >
               Return to shipping
-            </Button>
-
-            <Button type="submit" color="primary">
-              Pay
             </Button>
           </div>
         </CheckoutLayout>
