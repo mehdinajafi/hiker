@@ -114,7 +114,7 @@ const TextField: React.FC<ITextField> = (props) => {
           className={clsx(
             "relative rounded border",
             "z-20 w-full bg-transparent px-3 text-sm transition-all",
-            "focus:border-accent focus:outline-none",
+            "focus:border-primary focus:outline-none",
             {
               "border-gray-500": !error,
               "border-rose-600": error,
@@ -135,7 +135,7 @@ const TextField: React.FC<ITextField> = (props) => {
           aria-invalid={error ? "true" : "false"}
           className={clsx(
             "w-full rounded border bg-transparent px-3 text-sm",
-            "focus:border-accent focus:outline-none",
+            "focus:border-primary focus:outline-none",
             "appearance-none",
             {
               "border-gray-500": !error,
