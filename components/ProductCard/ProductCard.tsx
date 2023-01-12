@@ -29,7 +29,7 @@ const ProductCard: React.FC<IProductCard> = (props) => {
     <article
       className={clsx(
         "h-full rounded-md",
-        "border border-gray-800 transition-[border-color] hover:border-gray-600"
+        "border border-gray-300 transition-[border-color] hover:border-gray-400"
       )}
     >
       <Link
@@ -58,17 +58,17 @@ const ProductCard: React.FC<IProductCard> = (props) => {
 
           <div className="mt-auto flex items-center justify-between sm:mt-4 sm:flex-row-reverse">
             <div className="flex items-center gap-x-2">
-              <StarIcon className="text-accent" aria-hidden />
+              <StarIcon className="text-yellow-500" aria-hidden />
               <span className="text-xs">
                 {((rating.rate / 100) * 5).toFixed(1)}
               </span>
             </div>
 
-            <div className="text-sm font-medium">
+            <div className="text-sm">
               {status === "out_of_stock" ? (
                 <span className="text-gray-500">out of stock</span>
               ) : (
-                <span className="text-gray-200">
+                <span className="font-medium text-gray-700">
                   ${Number(price).toFixed(2)}
                 </span>
               )}

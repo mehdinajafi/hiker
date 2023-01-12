@@ -11,7 +11,7 @@ const Item: React.FC<IItem> = ({ children, ...radixProps }) => {
       {...radixProps}
       className={clsx(
         "inline-flex h-5 w-5 shrink-0 rounded-full",
-        "border-accent-dark",
+        "border-primary-dark",
         "data-[state=unchecked]:border-2",
         "data-[state=checked]:border-[6px]",
         "focus-visible:outline-none",

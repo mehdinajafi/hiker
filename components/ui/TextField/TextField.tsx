@@ -113,10 +113,10 @@ const TextField: React.FC<ITextField> = (props) => {
           aria-invalid={error ? "true" : "false"}
           className={clsx(
             "relative rounded border",
-            "z-20 w-full bg-transparent px-3 text-sm transition-all",
+            "z-20 w-full bg-transparent px-3 text-sm transition-[border-color]",
             "focus:border-primary focus:outline-none",
             {
-              "border-gray-500": !error,
+              "border-gray-300": !error,
               "border-rose-600": error,
               "py-4": isEmpty === "empty",
               "pt-6 pb-2": isEmpty === "fill",
@@ -138,7 +138,7 @@ const TextField: React.FC<ITextField> = (props) => {
             "focus:border-primary focus:outline-none",
             "appearance-none",
             {
-              "border-gray-500": !error,
+              "border-gray-300": !error,
               "py-4": isEmpty === "empty" || !children,
               "pt-6 pb-2": isEmpty === "fill" || children,
             }
@@ -152,7 +152,7 @@ const TextField: React.FC<ITextField> = (props) => {
         <span
           className={clsx(
             "absolute top-1/2 right-3 -translate-y-1/2 pl-3",
-            "border-l border-gray-400"
+            "border-l border-gray-300"
           )}
         >
           <ChevronDownIcon width={14} height={14} />

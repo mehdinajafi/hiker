@@ -10,7 +10,7 @@ const ShippingMethod: React.FC<ICShippingMethod> = (props) => {
   const { _id, title, description, price } = props.method;
 
   return (
-    <div className="flex border-b border-gray-500 last-of-type:border-0">
+    <div className="flex border-b border-gray-300 last-of-type:border-0">
       <Label
         control={<RadioGroup.Radio value={_id.toString()} />}
         label={

@@ -16,9 +16,8 @@ module.exports = {
         padding: "1rem",
       },
       colors: {
-        primary: "#7f59ed",
-        accent: "hsl(42, 94%, 75%)",
-        "accent-dark": "hsl(42, 94%, 68%)",
+        primary: "hsl(248deg 100% 60%)",
+        "primary-dark": "hsl(248deg 100% 50%)",
         muted: "hsl(210deg, 38%, 15%)",
         info: "hsl(230deg,100%,69%)",
         success: "hsl(160deg, 100%, 40%)",

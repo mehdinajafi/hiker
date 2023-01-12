@@ -26,11 +26,11 @@ const OrderSummery: React.FC<IOrderSummery> = (props) => {
   const renderShippingCost = () => {
     if (props.hideShippingCost) {
       return (
-        <div className="text-xs text-gray-300">Calculated at next step</div>
+        <div className="text-xs text-gray-700">Calculated at next step</div>
       );
     } else if (shippingCost === null) {
       return (
-        <div className="text-xs text-gray-300">Select shipping method</div>
+        <div className="text-xs text-gray-700">Select shipping method</div>
       );
     } else if (shippingCost === 0) {
       return <div className="text-sm font-semibold">Free</div>;
@@ -74,12 +74,12 @@ const OrderSummery: React.FC<IOrderSummery> = (props) => {
       </div>
 
       <div className="flex items-center justify-between">
-        <div className="text-sm text-gray-300">Subtotal</div>
+        <div className="text-sm">Subtotal</div>
         <div className="text-sm font-semibold">${subTotalPrice}</div>
       </div>
 
       <div className="mt-4 flex items-center justify-between">
-        <div className="text-sm text-gray-300">Shipping</div>
+        <div className="text-sm">Shipping</div>
         {renderShippingCost()}
       </div>
 
@@ -88,8 +88,8 @@ const OrderSummery: React.FC<IOrderSummery> = (props) => {
       </div>
 
       <div className="flex items-center justify-between">
-        <div className="text-gray-100">Total</div>
-        <div className="font-semibold">${totalPrice}</div>
+        <div className="text-lg">Total</div>
+        <div className="text-xl font-semibold">${totalPrice}</div>
       </div>
     </div>
   );

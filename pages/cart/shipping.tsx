@@ -141,7 +141,7 @@ const CheckoutPage = () => {
                 value={shippingId}
                 onValueChange={handleChangeShippingMethod}
               >
-                <div className="rounded-md border border-gray-500">
+                <div className="rounded-md border border-gray-300">
                   {shippingData.methods.map((method) => (
                     <ShippingMethod key={method._id} method={method} />
                   ))}

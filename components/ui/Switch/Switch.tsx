@@ -54,16 +54,16 @@ const Switch: React.FC<ISwitch> = (props) => {
           className={clsx(
             "absolute top-1/2 h-3 w-3 -translate-y-1/2 rounded-full transition-transform will-change-transform",
             {
-              "translate-x-1 bg-gray-100": !isChecked,
-              "translate-x-6 bg-accent": isChecked,
+              "translate-x-1 bg-gray-500": !isChecked,
+              "translate-x-6 bg-primary": isChecked,
             }
           )}
         />
 
         <span
           className={clsx("h-full w-full rounded-full border-2", {
-            "border-accent": isChecked,
-            "border-gray-100": !isChecked,
+            "border-primary": isChecked,
+            "border-gray-500": !isChecked,
           })}
         />
       </button>

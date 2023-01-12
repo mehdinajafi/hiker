@@ -51,17 +51,17 @@ const Button: React.FC<IButton> = (props) => {
       className={clsx(
         "inline-flex items-center justify-center",
         "rounded-md text-sm font-semibold",
-        "transition-transform active:scale-95 disabled:opacity-30",
+        "transition-[background-color,transform] active:scale-95 disabled:opacity-30",
         {
           "text-gray-100": variant === "text" && color === "gray",
-          "text-accent-dark": variant === "text" && color === "primary",
+          "text-primary-dark": variant === "text" && color === "primary",
           "text-rose-700": variant === "text" && color === "error",
           "py-2 px-4": variant === "contained",
           "bg-gray-700 text-white hover:bg-gray-800 disabled:hover:bg-gray-700":
             color === "gray" && variant === "contained",
           "bg-rose-700 text-white hover:bg-rose-800 disabled:hover:bg-rose-700":
             color === "error" && variant === "contained",
-          "bg-accent text-gray-900 hover:bg-accent-dark disabled:hover:bg-accent":
+          "bg-primary text-gray-100 hover:bg-primary-dark disabled:hover:bg-primary":
             color === "primary" && variant === "contained",
         },
         className

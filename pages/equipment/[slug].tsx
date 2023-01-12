@@ -75,7 +75,7 @@ const ProductPage: React.FC<IProductPage> = (props) => {
             <h2 className="heading-2xl">{product.title}</h2>
 
             <div className="mt-5 flex items-center">
-              <StarIcon className="text-accent" aria-hidden />
+              <StarIcon className="text-yellow-500" aria-hidden />
               <span className="ml-2 text-base font-medium">
                 {((product.rating.rate / 100) * 5).toFixed(1)}
               </span>
@@ -84,7 +84,7 @@ const ProductPage: React.FC<IProductPage> = (props) => {
               </span>
             </div>
 
-            <p className="mt-4 text-gray-100">{product.description}</p>
+            <p className="mt-4">{product.description}</p>
 
             <div className="my-4">
               <Divider />

@@ -23,7 +23,7 @@ const InformationTable: React.FC<IInformationTable> = (props) => {
     addComma(information.country);
 
   return (
-    <div role="table" className="rounded-md border border-gray-500 px-4">
+    <div role="table" className="rounded-md border border-gray-300 px-4">
       <InformationRow
         label="Contact"
         content={information.emailOrPhoneNumber}
@@ -69,12 +69,12 @@ const InformationRow: React.FC<IInformationRow> = (props) => {
     >
       <div
         role="rowheader"
-        className="col-span-6 mb-2 text-sm text-gray-400 sm:col-span-3 sm:mb-0"
+        className="col-span-6 mb-2 text-sm text-gray-500 sm:col-span-3 sm:mb-0"
       >
         {label}
       </div>
 
-      <div className="col-span-6 text-end text-xs text-accent-dark sm:col-span-2">
+      <div className="col-span-6 text-end text-xs text-primary-dark sm:col-span-2">
         <Link href={href}>Change</Link>
       </div>
 

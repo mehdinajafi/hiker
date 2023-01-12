@@ -8,7 +8,7 @@ const PostCard: React.FC<IPost> = (props) => {
   const { time, title, description, image, imageAlt, slug } = props;
 
   return (
-    <article className="flex flex-col overflow-hidden rounded-lg border border-gray-600">
+    <article className="flex flex-col overflow-hidden rounded-lg bg-gray-100">
       <div className="relative h-[300px]">
         <Image
           src={image}
@@ -18,18 +18,23 @@ const PostCard: React.FC<IPost> = (props) => {
           className="absolute left-0 top-0 h-full w-full object-cover"
         />
       </div>
+
       <div className="p-4">
-        <time className="text-body2 text-gray-400">
+        <time className="text-xs text-gray-500">
           {format(time, "dd MMM yyyy")}
         </time>
-        <h3 className="heading-xl mt-2 font-serif text-accent">{title}</h3>
-        <p className="text-body2 mt-4 text-white">{description}</p>
+        <h3 className="mt-2 font-serif text-xl font-bold text-primary">
+          {title}
+        </h3>
+
+        <p className="mt-4 text-sm text-gray-500">{description}</p>
+
         <div className="mt-4">
           <Link
             href={"/blog/" + slug}
-            className="group/link inline-flex items-center space-x-4 text-accent"
+            className="group/link inline-flex items-center space-x-4 text-primary"
           >
-            <span className="text-subtitle2">read more</span>
+            <span className="text-sm">read more</span>
             <ArrowDownIcon className="rotate-[270deg] transition-transform group-hover/link:translate-x-1" />
           </Link>
         </div>

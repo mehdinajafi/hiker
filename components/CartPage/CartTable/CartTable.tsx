@@ -1,9 +1,11 @@
+import Image from "next/image";
 import Alert from "@/components/ui/Alert";
 import Button from "@/components/ui/Button";
 import Spinner from "@/components/ui/Spinner";
 import { ICart } from "@/interfaces";
 import CartItemRow from "../CartItemRow";
 import CartRow from "../CartRow";
+import EmptyCartImage from "@/public/images/empty-cart.png";
 import RotateIcon from "@/public/icons/rotate.svg";
 
 interface ICartTable {
@@ -45,12 +47,7 @@ const CartTable: React.FC<ICartTable> = (props) => {
   if (!data || !data.cart || data.cart.items.length === 0) {
     return (
       <div className="flex flex-col items-center">
-        <img
-          src="/images/empty-cart.png"
-          width={100}
-          height={100}
-          className="mb-4"
-        />
+        <Image src={EmptyCartImage} alt="empty basket" className="mb-4" />
         <div className="text-center text-xl font-bold">Cart is empty!</div>
       </div>
     );

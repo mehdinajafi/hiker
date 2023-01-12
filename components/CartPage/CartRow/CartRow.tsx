@@ -15,7 +15,7 @@ const CartRow: React.FC<ICartRow> = ({ children, head, className }) => {
         "border-b pb-4 text-base",
         {
           "hidden border-gray-500 font-bold sm:grid": head,
-          "mt-4 grid border-gray-700": !head,
+          "mt-4 grid border-gray-300": !head,
         },
         className
       )}

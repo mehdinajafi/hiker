@@ -74,12 +74,12 @@ const CheckoutPage = () => {
           <fieldset className="mt-8">
             <legend className="mb-4 font-bold">Pay with</legend>
 
-            <div className="rounded-md border border-gray-500">
+            <div className="rounded-md border border-gray-300">
               <RadioGroup
                 value={paymentMethod}
                 onValueChange={handlePaymentMethodChange}
               >
-                <div className="flex items-center border-b border-gray-500 last-of-type:border-b-0">
+                <div className="flex items-center border-b border-gray-300 last-of-type:border-b-0">
                   <Label
                     control={<RadioGroup.Radio value="paypal" />}
                     label="Paypal"
@@ -87,7 +87,7 @@ const CheckoutPage = () => {
                   />
                 </div>
 
-                <div className="flex items-center border-b border-gray-500 last-of-type:border-b-0">
+                <div className="flex items-center border-b border-gray-300 last-of-type:border-b-0">
                   <Label
                     control={<RadioGroup.Radio value="credit-card" />}
                     label="Credit Card"

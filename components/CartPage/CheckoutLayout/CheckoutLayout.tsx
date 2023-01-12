@@ -13,7 +13,7 @@ const CheckoutLayout: React.FC<ICheckoutLayout> = (props) => {
       <div
         className={clsx(
           "col-span-12 row-start-1",
-          "md:col-span-5 md:row-auto md:border-l md:border-gray-700 md:pl-8"
+          "md:col-span-5 md:row-auto md:border-l md:border-gray-300 md:pl-8"
         )}
       >
         {props.orderSummery}

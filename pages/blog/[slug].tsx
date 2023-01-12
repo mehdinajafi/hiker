@@ -49,11 +49,11 @@ const BlogPostPage: NextPage<IBlogPostPage> = (props) => {
 
         <article className="grid grid-cols-12">
           <div className="col-span-12 mb-8">
-            <h2 className="heading-5xl mt-4 font-serif text-accent">
+            <h2 className="heading-5xl mt-4 font-serif text-primary">
               {post.title}
             </h2>
-            <div className="text-subtitle1 mt-4">{post.author.name}</div>
-            <time className="mt-2 inline-block text-gray-500">
+            <div className="mt-4 text-sm">{post.author.name}</div>
+            <time className="mt-2 inline-block text-sm text-gray-500">
               {format(post.time, "dd MMM yyyy")}
             </time>
           </div>
@@ -73,7 +73,7 @@ const BlogPostPage: NextPage<IBlogPostPage> = (props) => {
               className={clsx(
                 "prose-lg py-12",
                 "prose-headings:font-serif prose-ul:list-disc",
-                "prose-a:no-underline hover:prose-a:underline"
+                "prose-a:text-primary-dark prose-a:no-underline hover:prose-a:underline"
               )}
               dangerouslySetInnerHTML={{ __html: post.body }}
             />

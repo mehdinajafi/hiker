@@ -37,7 +37,7 @@ const QuantityInput: React.FC<IQuantityInput> = (props) => {
     <div
       className={clsx(
         "flex w-20 items-center justify-between",
-        "rounded-md border border-gray-100"
+        "rounded-md border border-gray-300"
       )}
     >
       <button
