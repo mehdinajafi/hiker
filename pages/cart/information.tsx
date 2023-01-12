@@ -93,9 +93,8 @@ const CheckoutPage = () => {
             <OrderSummery
               hideShippingCost
               items={data?.cart.items}
-              shippingCost={data?.cart.shippingCost}
               subTotalPrice={data?.cart.subTotalPrice}
-              totalPrice={data?.cart.totalPrice}
+              totalPrice={data?.cart.subTotalPrice}
             />
           }
         >
