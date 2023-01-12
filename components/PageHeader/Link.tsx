@@ -16,7 +16,7 @@ const PageHeaderLink: React.FC<IPageHeaderLink> = ({
   }
 
   return (
-    <Link href={href || "/"} className="text-sm text-gray-200 hover:underline">
+    <Link href={href || "/"} className="text-sm text-gray-500 hover:underline">
       {children}
     </Link>
   );

@@ -7,11 +7,7 @@ interface IPageHeaderBreadcrumbs {
 const PageHeaderBreadcrumbs: React.FC<IPageHeaderBreadcrumbs> = ({
   children,
 }) => {
-  return (
-    <div className="text-gray-500">
-      <Breadcrumbs>{children}</Breadcrumbs>
-    </div>
-  );
+  return <Breadcrumbs>{children}</Breadcrumbs>;
 };
 
 export default PageHeaderBreadcrumbs;
