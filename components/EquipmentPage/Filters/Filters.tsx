@@ -15,8 +15,7 @@ const Filters: React.FC<IFilters> = (props) => {
 
   return (
     <>
-      <h3 className="heading-xl pl-4 pt-5 text-white">Filters</h3>
-      <div className="px-4 py-4">
+      <div className="">
         <FilterRow
           filterType="checkbox"
           filterTitle="Categories"

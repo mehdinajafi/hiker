@@ -1,5 +1,6 @@
-import StarIcon from "@/public/icons/star-fill.svg";
 import Link from "next/link";
+import clsx from "clsx";
+import StarIcon from "@/public/icons/star-fill.svg";
 
 interface IProductCard {
   status: "out_of_stock" | "marketable";
@@ -25,9 +26,17 @@ const ProductCard: React.FC<IProductCard> = (props) => {
   const { images, title, rating, price, slug, status } = props;
 
   return (
-    <article className="h-full rounded-lg border border-gray-600">
-      <Link href={`/equipment/${slug}`} className="flex h-full flex-col">
-        <div className="px-4">
+    <article
+      className={clsx(
+        "h-full rounded-md",
+        "border border-gray-800 transition-[border-color] hover:border-gray-600"
+      )}
+    >
+      <Link
+        href={`/equipment/${slug}`}
+        className="grid grid-cols-12 items-center"
+      >
+        <div className="col-span-4 p-4 sm:col-span-12">
           <picture>
             {images.optimized &&
               images.optimized.map((image) => (
@@ -39,24 +48,32 @@ const ProductCard: React.FC<IProductCard> = (props) => {
               loading="lazy"
               width={200}
               height={295}
-              className="mx-auto object-cover"
+              className="mx-auto h-auto sm:h-44 sm:w-auto"
             />
           </picture>
         </div>
-        <div className="flex grow flex-col gap-y-2 p-6 text-white">
-          <h3 className="text-subtitle1 ellipsis-2 grow">{title}</h3>
-          <div className="flex items-center gap-x-2">
-            <StarIcon className="text-accent" aria-hidden />
-            <span className="text-sm font-medium">
-              {((rating.rate / 100) * 5).toFixed(1)}
-            </span>
+
+        <div className="col-span-8 flex h-full flex-col p-4 sm:col-span-12">
+          <h3 className="ellipsis-2 grow text-base font-bold">{title}</h3>
+
+          <div className="mt-auto flex items-center justify-between sm:mt-4 sm:flex-row-reverse">
+            <div className="flex items-center gap-x-2">
+              <StarIcon className="text-accent" aria-hidden />
+              <span className="text-xs">
+                {((rating.rate / 100) * 5).toFixed(1)}
+              </span>
+            </div>
+
+            <div className="text-sm font-medium">
+              {status === "out_of_stock" ? (
+                <span className="text-gray-500">out of stock</span>
+              ) : (
+                <span className="text-gray-200">
+                  ${Number(price).toFixed(2)}
+                </span>
+              )}
+            </div>
           </div>
-          {status === "out_of_stock" && (
-            <div className="text-subtitle1 text-gray-500">out of stock</div>
-          )}
-          {status === "marketable" && (
-            <div className="text-subtitle1">£{Number(price).toFixed(2)}</div>
-          )}
         </div>
       </Link>
     </article>

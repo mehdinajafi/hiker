@@ -9,6 +9,7 @@ import ProductsNotFound from "@/components/EquipmentPage/ProductsNotFound";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import getProducts from "@/lib/api/products/getProducts";
 import { IProduct, NextPage } from "@/interfaces";
+import clsx from "clsx";
 
 interface IEquipmentPage {
   products: IProduct[];
@@ -56,28 +57,30 @@ const EquipmentPage: NextPage<IEquipmentPage> = (props) => {
 
           {isLargetThanLg && (
             <div className="col-span-12 lg:col-span-3">
-              <div className="h-min rounded-lg border border-gray-600">
+              <div className="h-min">
                 <Filters />
               </div>
             </div>
           )}
 
-          <div className="col-span-12 grid grid-cols-12 gap-y-5 xs:gap-x-5 lg:col-span-9">
-            {products.length === 0 ? (
-              <div className="col-span-12">
-                <ProductsNotFound />
-              </div>
-            ) : (
-              products.map((product) => (
+          {products.length === 0 ? (
+            <div className="col-span-12">
+              <ProductsNotFound />
+            </div>
+          ) : (
+            <div className="col-span-12 grid grid-cols-12 gap-4 border-gray-800 lg:col-span-9">
+              {products.map((product) => (
                 <div
                   key={product._id}
-                  className="col-span-12 xs:col-span-6 md:col-span-4"
+                  className={clsx(
+                    "col-span-12 sm:col-span-6 md:col-span-4 xl:col-span-3"
+                  )}
                 >
                   <ProductCard {...product} />
                 </div>
-              ))
-            )}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </main>
     </>
