@@ -5,8 +5,8 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    @apply bg-background text-white;
+  body {
+    @apply bg-background text-gray-900;
   }
 }
 

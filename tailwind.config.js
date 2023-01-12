@@ -16,6 +16,7 @@ module.exports = {
         padding: "1rem",
       },
       colors: {
+        primary: "#7f59ed",
         accent: "hsl(42, 94%, 75%)",
         "accent-dark": "hsl(42, 94%, 68%)",
         muted: "hsl(210deg, 38%, 15%)",
@@ -28,7 +29,7 @@ module.exports = {
         "error-background": "hsla(340deg, 95%, 43%, 0.1)",
       },
       backgroundColor: {
-        background: "rgba(11, 29, 38, 1)",
+        background: "#ffffff",
       },
       fontSize: {
         "5xl": ["3rem", "1.3125"],
@@ -50,10 +51,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require("@tailwindcss/typography"),
-    plugin(function ({ addVariant }) {
-      addVariant("child", "&_>_*");
-    }),
-  ],
+  plugins: [require("@tailwindcss/typography")],
 };
