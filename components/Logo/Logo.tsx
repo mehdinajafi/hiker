@@ -1,6 +1,10 @@
+import Link from "next/link";
+
 const Logo = () => {
   return (
-    <div className="font-serif text-3xl tracking-widest text-white">MNTN</div>
+    <Link href="/" className="font-serif text-3xl tracking-widest text-white">
+      MNTN
+    </Link>
   );
 };
 
