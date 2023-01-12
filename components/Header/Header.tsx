@@ -3,22 +3,20 @@ import Navigation from "@/components/Navigation";
 import TwitterIcon from "@/public/icons/twitter.svg";
 import InstagramIcon from "@/public/icons/instagram.svg";
 import ArrowDownIcon from "@/public/icons/arrow_down.svg";
+import HeaderBG from "@/public/images/header-bg.jpg";
+import Image from "next/image";
 
 const Header: React.FC = () => {
   return (
     <header className="relative">
       <div className="relative h-[500px] md:h-[762px]">
-        <picture>
-          <source srcSet="/images/header-bg.avif" type="image/avif" />
-          <source srcSet="/images/header-bg.webp" type="image/webp" />
-          <img
-            src="/images/header-bg.jpg"
-            alt="A mountain covered with fog."
-            decoding="async"
-            loading="lazy"
-            className="absolute inset-0 h-full w-full object-cover object-[-100px] md:object-top"
-          />
-        </picture>
+        <Image
+          src={HeaderBG}
+          alt="A mountain covered with fog."
+          decoding="async"
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover object-[-100px] md:object-top"
+        />
       </div>
       <div className="absolute inset-0 bg-linear-gradient-1" />
 
@@ -32,7 +30,7 @@ const Header: React.FC = () => {
               "md:static md:flex md:flex-grow md:items-start lg:absolute lg:flex-grow-0"
             )}
           >
-            <span className="text-lg text-white">Follow us</span>
+            <span className="whitespace-nowrap text-lg">Follow us</span>
             <a href="">
               <TwitterIcon />
             </a>
@@ -42,18 +40,10 @@ const Header: React.FC = () => {
           </div>
 
           <div className="flex max-w-[710px] flex-col">
-            <div
-              className={clsx(
-                "text-overline flex items-center text-accent",
-                "before:mr-3 before:h-px before:w-6 before:flex-shrink-0 before:bg-accent before:content-['_']"
-              )}
-            >
-              A Hiking Guide
-            </div>
-            <h1 className="mt-6 font-serif text-3xl font-extrabold text-white md:text-5xl">
+            <h1 className="font-serif text-3xl font-extrabold md:text-5xl">
               Be prepared for the Mountains and beyond!
             </h1>
-            <div className="mt-6 flex items-center space-x-8 font-bold text-white">
+            <div className="mt-6 flex items-center space-x-8 font-bold">
               <span className="text-base md:text-lg">scroll down</span>
               <ArrowDownIcon />
             </div>

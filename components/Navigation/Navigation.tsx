@@ -104,7 +104,7 @@ const MobileMenu = () => {
 // ------------------------ Desktop Nav ------------------------ //
 const DesktopNav = () => {
   return (
-    <ul className="flex list-none items-center space-x-10 text-lg text-white">
+    <ul className="flex list-none items-center space-x-10 text-lg">
       <li className="text-subtitle1 transition-colors hover:text-gray-200">
         <Link href="/equipment">Equipment</Link>
       </li>

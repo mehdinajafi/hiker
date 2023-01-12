@@ -50,7 +50,7 @@ const Badge: React.FC<IBadge> = (props) => {
           "h-5 min-w-[1.25rem] rounded-full px-1 text-xs font-medium",
           "translate-x-1/2 -translate-y-1/2",
           {
-            "bg-accent text-gray-900": color === "primary",
+            "bg-primary text-gray-900": color === "primary",
             "top-0": anchorOrigin.vertical === "top",
             "bottom-0": anchorOrigin.vertical === "bottom",
             "left-0": anchorOrigin.horizontal === "left",
