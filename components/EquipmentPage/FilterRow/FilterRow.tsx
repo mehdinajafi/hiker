@@ -1,11 +1,9 @@
 import React from "react";
-import IFilter from "@/components/EquipmentPage/interfaces/Filter";
 import SwitchRow from "./SwitchRow";
 import CheckboxRow from "./CheckboxRow";
+import { IFilter } from "@/interfaces";
 
-interface IFilterRow extends IFilter {}
-
-const FilterRow: React.FC<IFilterRow> = (props) => {
+const FilterRow: React.FC<IFilter> = (props) => {
   const { filterType, filterKey, filterTitle, filterOptions } = props;
 
   if (filterType === "switch") {

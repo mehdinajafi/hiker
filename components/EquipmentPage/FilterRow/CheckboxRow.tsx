@@ -5,8 +5,9 @@ import Checkbox from "@/components/ui/Checkbox";
 import Collapse from "@/components/ui/Collapse";
 import useNextQueryParam from "@/hooks/useNextQueryParam";
 import toggleQuery from "@/utils/toggleQuery";
-import IFilter from "../interfaces/Filter";
 import ChevronDownIcon from "@/public/icons/chevron-down.svg";
+import Label from "@/components/ui/Label";
+import { IFilter } from "@/interfaces";
 
 interface ICheckboxRow {
   filter: IFilter;
@@ -53,40 +54,35 @@ const CheckboxRow: React.FC<ICheckboxRow> = (props) => {
     <>
       <button
         onClick={toggleCollapse}
-        className="flex w-full items-center justify-between py-4 text-white"
+        className="flex w-full items-center justify-between py-4"
       >
-        <span className="text-sutitle2">{filter.filterTitle}</span>
+        <span className="text-sm">{filter.filterTitle}</span>
         <ChevronDownIcon
           aria-hidden="true"
           className={clsx("transition-transform", !isCollapsed && "rotate-180")}
         />
       </button>
 
-      <Collapse in={!isCollapsed}>
-        <div className="flex flex-col space-y-4 pb-4">
-          {filter.filterOptions &&
-            filter.filterOptions.map((filterOption) => (
-              <div
+      {filter.filterOptions && (
+        <Collapse in={!isCollapsed}>
+          <div className="flex flex-col space-y-4 pl-4 pt-1 pb-4">
+            {filter.filterOptions.map((filterOption) => (
+              <Label
                 key={filterOption.filterOptionId}
-                className="flex items-center space-x-2"
-              >
-                <Checkbox
-                  defaultChecked={isChecked(filterOption.filterOptionId)}
-                  id={String(filterOption.filterOptionId)}
-                  onCheckedChange={(e) =>
-                    handleOnChange(e, filterOption.filterOptionId)
-                  }
-                />
-                <label
-                  htmlFor={String(filterOption.filterOptionId)}
-                  className="user-select-none text-white"
-                >
-                  {filterOption.filterOprionTitle}
-                </label>
-              </div>
+                control={
+                  <Checkbox
+                    defaultChecked={isChecked(filterOption.filterOptionId)}
+                    onCheckedChange={(e) =>
+                      handleOnChange(e, filterOption.filterOptionId)
+                    }
+                  />
+                }
+                label={filterOption.filterOprionTitle}
+              />
             ))}
-        </div>
-      </Collapse>
+          </div>
+        </Collapse>
+      )}
     </>
   );
 };
