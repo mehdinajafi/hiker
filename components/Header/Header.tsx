@@ -18,7 +18,6 @@ const Header: React.FC = () => {
           className="absolute inset-0 h-full w-full object-cover object-[-100px] md:object-top"
         />
       </div>
-      <div className="absolute inset-0 bg-linear-gradient-1" />
 
       <div className="absolute inset-x-0 top-0">
         <Navigation />

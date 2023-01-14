@@ -1,5 +1,3 @@
-const plugin = require("tailwindcss/plugin");
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -43,10 +41,6 @@ module.exports = {
         modal: 1300,
         snackbar: 1400,
         tooltip: 1500,
-      },
-      backgroundImage: {
-        "linear-gradient-1":
-          "linear-gradient(180deg, rgba(11, 29, 38, 0) 58.85%, #0B1D26 100%)",
       },
     },
   },
