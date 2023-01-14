@@ -100,18 +100,19 @@ const ProductPage: React.FC<IProductPage> = (props) => {
                 £{Number(product.price).toFixed(2)}
               </div>
             )}
-
-            <div className="mt-4">
-              <Button
-                color="primary"
-                disabled={isMutating}
-                startIcon={<PlusIcon width={24} height={24} />}
-                onClick={handleAddToCart}
-                className="font-medium"
-              >
-                Add To Cart
-              </Button>
-            </div>
+            {product.status === "marketable" && (
+              <div className="mt-4">
+                <Button
+                  color="primary"
+                  disabled={isMutating}
+                  startIcon={<PlusIcon width={24} height={24} />}
+                  onClick={handleAddToCart}
+                  className="font-medium"
+                >
+                  Add To Cart
+                </Button>
+              </div>
+            )}
           </div>
 
           <div className="col-span-12 md:col-span-8">
