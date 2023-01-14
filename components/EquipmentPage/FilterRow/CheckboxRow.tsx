@@ -1,20 +1,21 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import Checkbox from "@/components/ui/Checkbox";
 import Collapse from "@/components/ui/Collapse";
+import Label from "@/components/ui/Label";
 import useNextQueryParam from "@/hooks/useNextQueryParam";
 import toggleQuery from "@/utils/toggleQuery";
 import ChevronDownIcon from "@/public/icons/chevron-down.svg";
-import Label from "@/components/ui/Label";
 import { IFilter } from "@/interfaces";
 
 interface ICheckboxRow {
   filter: IFilter;
+  onChange?: (query: Object) => void;
 }
 
 const CheckboxRow: React.FC<ICheckboxRow> = (props) => {
-  const { filter } = props;
+  const { filter, onChange: onChangeProp } = props;
   const router = useRouter();
   const queryParam = useNextQueryParam(filter.filterKey);
   const [isCollapsed, setIsCollapsed] = useState(true);
@@ -41,12 +42,17 @@ const CheckboxRow: React.FC<ICheckboxRow> = (props) => {
     id: string | number
   ) => {
     const key = filter.filterKey;
+    const newQuery = {
+      ...router.query,
+      [key]: toggleQuery(router.query[key], String(id)),
+    };
+
+    if (onChangeProp) {
+      onChangeProp(newQuery);
+    }
 
     router.push({
-      query: {
-        ...router.query,
-        [key]: toggleQuery(router.query[key], String(id)),
-      },
+      query: newQuery,
     });
   };
 

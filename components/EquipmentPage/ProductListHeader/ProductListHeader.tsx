@@ -23,6 +23,10 @@ const ProductListHeader: React.FC<IProductListHeader> = (props) => {
     setFilterDrawerOpen(false);
   };
 
+  const handleChangeFilters = () => {
+    handleFilterDrawerClose();
+  };
+
   return (
     <div>
       <Button
@@ -39,8 +43,8 @@ const ProductListHeader: React.FC<IProductListHeader> = (props) => {
         hide="lg"
       >
         <div className="h-full w-72 bg-background">
-          <div className="flex items-center justify-between border-b border-gray-500 p-4">
-            <h3 className="text-lg font-bold">Filters</h3>
+          <div className="flex items-center justify-between border-b border-gray-300 p-4">
+            <h3 className="heading-xl">Filters</h3>
             <Button
               variant="text"
               color="gray"
@@ -51,7 +55,7 @@ const ProductListHeader: React.FC<IProductListHeader> = (props) => {
           </div>
 
           <div className="px-4">
-            <Filters filters={filters} />
+            <Filters filters={filters} onChange={handleChangeFilters} />
           </div>
         </div>
       </Drawer>

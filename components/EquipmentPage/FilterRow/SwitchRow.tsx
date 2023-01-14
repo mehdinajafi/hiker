@@ -1,4 +1,3 @@
-import React from "react";
 import { useRouter } from "next/router";
 import Switch from "@/components/ui/Switch";
 import useNextQueryParam from "@/hooks/useNextQueryParam";
@@ -6,21 +5,28 @@ import { IFilter } from "@/interfaces";
 
 interface ISwitchRow {
   filter: IFilter;
+  onChange?: (query: Object) => void;
 }
 
 const SwitchRow: React.FC<ISwitchRow> = (props) => {
-  const { filter } = props;
+  const { filter, onChange: onChangeProp } = props;
   const router = useRouter();
   const queryParam = useNextQueryParam(filter.filterKey);
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const key = filter.filterKey;
 
+    const newQuery = {
+      ...router.query,
+      [key]: router.query[key] ? [] : "1",
+    };
+
+    if (onChangeProp) {
+      onChangeProp(newQuery);
+    }
+
     router.push({
-      query: {
-        ...router.query,
-        [key]: router.query[key] ? [] : "1",
-      },
+      query: newQuery,
     });
   };
 

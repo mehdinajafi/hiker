@@ -4,10 +4,11 @@ import { IFilter } from "@/interfaces";
 
 interface IFilters {
   filters?: IFilter[];
+  onChange?: (query: Object) => void;
 }
 
 const Filters: React.FC<IFilters> = (props) => {
-  const { filters } = props;
+  const { filters, onChange } = props;
 
   return (
     <div className="">
@@ -29,6 +30,7 @@ const Filters: React.FC<IFilters> = (props) => {
             filterOprionTitle: "Stuff Sack",
           },
         ]}
+        onChange={onChange}
       />
 
       <Divider />
@@ -38,6 +40,7 @@ const Filters: React.FC<IFilters> = (props) => {
         filterTitle="Only available items"
         filterKey="has_selling_stock"
         filterOptions={null}
+        onChange={onChange}
       />
     </div>
   );
