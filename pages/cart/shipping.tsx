@@ -76,7 +76,7 @@ const CheckoutPage = () => {
   return (
     <>
       <Head>
-        <title>Shipping - MNTN</title>
+        <title>Shipping - HIKER</title>
       </Head>
 
       <main className="container mb-20">

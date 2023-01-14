@@ -5,7 +5,7 @@ const AboutusPage = () => {
   return (
     <>
       <Head>
-        <title>About us - MNTN</title>
+        <title>About us - HIKER</title>
       </Head>
 
       <main className="mb-16">

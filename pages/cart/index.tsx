@@ -17,7 +17,7 @@ const CartPage = () => {
   return (
     <>
       <Head>
-        <title>MNTN</title>
+        <title>HIKER</title>
       </Head>
 
       <main className="container mb-20">

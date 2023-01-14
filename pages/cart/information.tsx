@@ -75,7 +75,7 @@ const CheckoutPage = () => {
   return (
     <>
       <Head>
-        <title>Information - MNTN</title>
+        <title>Information - HIKER</title>
       </Head>
 
       <main className="container mb-20">

@@ -37,7 +37,7 @@ const CheckoutPage = () => {
   return (
     <>
       <Head>
-        <title>Payment - MNTN</title>
+        <title>Payment - HIKER</title>
       </Head>
 
       <main className="container mb-20">

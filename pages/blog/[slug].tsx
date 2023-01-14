@@ -35,7 +35,7 @@ const BlogPostPage: NextPage<IBlogPostPage> = (props) => {
   return (
     <>
       <Head>
-        <title>{post.title} - MNTN </title>
+        <title>{post.title} - HIKER </title>
       </Head>
 
       <main className="container mb-16">

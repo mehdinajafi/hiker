@@ -36,7 +36,7 @@ const EquipmentPage: NextPage<IEquipmentPage> = (props) => {
   return (
     <>
       <Head>
-        <title>Equipment - MNTN</title>
+        <title>Equipment - HIKER</title>
       </Head>
 
       <main className="container mb-16">

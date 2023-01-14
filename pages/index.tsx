@@ -18,7 +18,7 @@ const HomePage: NextPage = () => {
   return (
     <>
       <Head>
-        <title>MNTN</title>
+        <title>HIKER</title>
       </Head>
 
       <main className="container mb-20 flex flex-col gap-10 md:gap-32">

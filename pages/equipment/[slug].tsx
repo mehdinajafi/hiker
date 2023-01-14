@@ -66,7 +66,7 @@ const ProductPage: React.FC<IProductPage> = (props) => {
   return (
     <>
       <Head>
-        <title>{product.title} - MNTN</title>
+        <title>{product.title} - HIKER</title>
       </Head>
 
       <main className="container mb-16 mt-5 md:my-32">
