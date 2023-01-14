@@ -1,6 +1,5 @@
 import Link from "next/link";
 import clsx from "clsx";
-import StarIcon from "@/public/icons/star-fill.svg";
 
 interface IProductCard {
   status: "out_of_stock" | "marketable";
@@ -23,7 +22,7 @@ interface IProductCard {
 }
 
 const ProductCard: React.FC<IProductCard> = (props) => {
-  const { images, title, rating, price, slug, status } = props;
+  const { images, title, price, slug, status } = props;
 
   return (
     <article
@@ -32,10 +31,7 @@ const ProductCard: React.FC<IProductCard> = (props) => {
         "border border-gray-300 transition-[border-color] hover:border-gray-400"
       )}
     >
-      <Link
-        href={`/equipment/${slug}`}
-        className="grid grid-cols-12 items-center"
-      >
+      <Link href={`/equipment/${slug}`} className="group grid grid-cols-12">
         <div className="col-span-4 p-4 sm:col-span-12">
           <picture>
             {images.optimized &&
@@ -53,26 +49,15 @@ const ProductCard: React.FC<IProductCard> = (props) => {
           </picture>
         </div>
 
-        <div className="col-span-8 flex h-full flex-col p-4 sm:col-span-12">
-          <h3 className="ellipsis-2 grow text-base font-bold">{title}</h3>
+        <div className="col-span-8 flex flex-col p-4 sm:col-span-12 sm:items-center">
+          <h3 className="ellipsis-2 text-subtitle1">{title}</h3>
 
-          <div className="mt-auto flex items-center justify-between sm:mt-4 sm:flex-row-reverse">
-            <div className="flex items-center gap-x-2">
-              <StarIcon className="text-yellow-500" aria-hidden />
-              <span className="text-xs">
-                {((rating.rate / 100) * 5).toFixed(1)}
-              </span>
-            </div>
-
-            <div className="text-sm">
-              {status === "out_of_stock" ? (
-                <span className="text-gray-500">out of stock</span>
-              ) : (
-                <span className="font-medium text-gray-700">
-                  ${Number(price).toFixed(2)}
-                </span>
-              )}
-            </div>
+          <div className="text-subtitle2 mt-2">
+            {status === "out_of_stock" ? (
+              <span className="text-gray-500">out of stock</span>
+            ) : (
+              <span className="text-gray-800">${Number(price).toFixed(2)}</span>
+            )}
           </div>
         </div>
       </Link>
