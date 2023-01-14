@@ -25,13 +25,13 @@ const HomePage: NextPage = () => {
         <section className="mt-16">
           <h3 className="font-serif text-2xl font-semibold">Our Blog</h3>
           <div className="mt-6 grid grid-cols-12 gap-5">
-            <div className="col-span-12 lg:col-span-4">
+            <div className="col-span-12 md:col-span-4">
               <PostCard {...post} />
             </div>
-            <div className="col-span-12 lg:col-span-4">
+            <div className="col-span-12 md:col-span-4">
               <PostCard {...post} />
             </div>
-            <div className="col-span-12 lg:col-span-4">
+            <div className="col-span-12 md:col-span-4">
               <PostCard {...post} />
             </div>
           </div>

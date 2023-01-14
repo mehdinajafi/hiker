@@ -8,8 +8,8 @@ const PostCard: React.FC<IPost> = (props) => {
   const { time, title, description, image, imageAlt, slug } = props;
 
   return (
-    <article className="flex flex-col overflow-hidden rounded-lg bg-gray-100">
-      <div className="relative h-[300px]">
+    <article className="flex h-full flex-col overflow-hidden rounded-lg bg-gray-100 shadow-sm">
+      <div className="relative h-52 md:h-40 lg:h-52">
         <Image
           src={image}
           width={600}
@@ -19,22 +19,20 @@ const PostCard: React.FC<IPost> = (props) => {
         />
       </div>
 
-      <div className="p-4">
+      <div className="flex grow flex-col p-4">
         <time className="text-xs text-gray-500">
           {format(time, "dd MMM yyyy")}
         </time>
-        <h3 className="mt-2 font-serif text-xl font-bold text-primary">
-          {title}
-        </h3>
+        <h3 className="mt-2 font-serif text-xl font-bold">{title}</h3>
 
-        <p className="mt-4 text-sm text-gray-500">{description}</p>
+        <p className="ellipsis-2 mt-4 text-sm text-gray-500">{description}</p>
 
-        <div className="mt-4">
+        <div className="mt-auto">
           <Link
             href={"/blog/" + slug}
-            className="group/link inline-flex items-center space-x-4 text-primary"
+            className="group/link mt-4 inline-flex items-center space-x-4 text-primary"
           >
-            <span className="text-sm">read more</span>
+            <span className="text-subtitle1">read more</span>
             <ArrowDownIcon className="rotate-[270deg] transition-transform group-hover/link:translate-x-1" />
           </Link>
         </div>
