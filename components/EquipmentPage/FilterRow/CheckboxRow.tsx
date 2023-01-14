@@ -18,7 +18,7 @@ const CheckboxRow: React.FC<ICheckboxRow> = (props) => {
   const { filter, onChange: onChangeProp } = props;
   const router = useRouter();
   const queryParam = useNextQueryParam(filter.filterKey);
-  const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(queryParam ? false : true);
 
   const isChecked = (id: string | number) => {
     const idStr = String(id);
@@ -70,7 +70,7 @@ const CheckboxRow: React.FC<ICheckboxRow> = (props) => {
       </button>
 
       {filter.filterOptions && (
-        <Collapse in={!isCollapsed}>
+        <Collapse in={!isCollapsed} appear={false}>
           <div className="flex flex-col space-y-4 pl-4 pt-1 pb-4">
             {filter.filterOptions.map((filterOption) => (
               <Label
