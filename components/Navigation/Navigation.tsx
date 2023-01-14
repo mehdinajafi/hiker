@@ -48,7 +48,7 @@ const MobileMenu = () => {
 
   return (
     <>
-      <button onClick={toggleMenu} className="text-white">
+      <button onClick={toggleMenu}>
         <MenuIcon aria-hidden="true" width="24" height="24" />
       </button>
 
@@ -66,31 +66,31 @@ const MobileMenu = () => {
             className="mt-2 flex items-center self-start py-2 text-gray-300"
           >
             <XIcon aria-hidden="true" width="24" height="24" />{" "}
-            <span className="text-subtitle1 ml-2">Close</span>
+            <span className="text-subtitle2 ml-2">Close</span>
           </button>
 
           <nav className="mt-16">
-            <ul className="flex list-none flex-col space-y-8 text-2xl font-extrabold text-white">
-              <li>
-                <Link href="/equipment">Equipment</Link>
-              </li>
-              <li>
-                <Link href="/about-us">About us</Link>
-              </li>
-              <li>
-                <Link href="/blog">Blog</Link>
-              </li>
+            <ul className="flex list-none flex-col space-y-8">
+              <PageLink href="/equipment" onClick={onClose}>
+                Equipment
+              </PageLink>
+              <PageLink href="/about-us" onClick={onClose}>
+                About us
+              </PageLink>
+              <PageLink href="/blog" onClick={onClose}>
+                Blog
+              </PageLink>
             </ul>
           </nav>
 
           <div className="mt-auto mb-8 flex items-center space-x-6 text-white">
-            <div className="text-xl">Follow us</div>
+            <div className="text-subtitle1">Follow us</div>
 
             <div className="flex items-center space-x-4">
-              <a href="">
+              <a href="https://twitter.com" target="_blank" rel="noreferrer">
                 <TwitterIcon />
               </a>
-              <a href="">
+              <a href="https://instagram.com" target="_blank" rel="noreferrer">
                 <InstagramIcon />
               </a>
             </div>
@@ -100,6 +100,18 @@ const MobileMenu = () => {
     </>
   );
 };
+
+const PageLink: React.FC<{
+  onClick: () => void;
+  href: string;
+  children: React.ReactNode;
+}> = (props) => (
+  <li className="heading-xl text-white">
+    <Link href={props.href} onClick={props.onClick}>
+      {props.children}
+    </Link>
+  </li>
+);
 
 // ------------------------ Desktop Nav ------------------------ //
 const DesktopNav = () => {
