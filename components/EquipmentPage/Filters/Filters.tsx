@@ -18,15 +18,15 @@ const Filters: React.FC<IFilters> = (props) => {
         filterOptions={[
           {
             filterOptionId: 1,
-            filterOprionTitle: "Sleeping Bags",
-          },
-          {
-            filterOptionId: 2,
             filterOprionTitle: "Rucksacks & Bags",
           },
           {
+            filterOptionId: 2,
+            filterOprionTitle: "Kitbag",
+          },
+          {
             filterOptionId: 3,
-            filterOprionTitle: "Sleeping Bags",
+            filterOprionTitle: "Stuff Sack",
           },
         ]}
       />
