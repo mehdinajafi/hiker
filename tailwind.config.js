@@ -16,13 +16,13 @@ module.exports = {
       colors: {
         primary: "hsl(248deg 100% 60%)",
         "primary-dark": "hsl(248deg 100% 50%)",
-        muted: "hsl(210deg, 38%, 15%)",
-        info: "hsl(230deg,100%,69%)",
+        info: "hsl(245deg, 100%, 60%)",
+        muted: "hsl(210deg, 55%, 92%)",
         success: "hsl(160deg, 100%, 40%)",
         "success-background": "hsla(160deg, 100%, 40%, 0.1)",
-        alert: "hsl(30deg, 100%, 50%)",
-        "alert-background": "hsl(40deg 13% 13%)",
-        error: "hsl(340deg, 95%, 60%)",
+        alert: "hsl(37deg, 100%, 50%)",
+        "alert-background": "hsla(52deg, 100%, 50%, 0.25)",
+        error: "hsl(340deg, 95%, 50%)",
         "error-background": "hsla(340deg, 95%, 43%, 0.1)",
       },
       backgroundColor: {

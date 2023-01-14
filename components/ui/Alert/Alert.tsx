@@ -27,15 +27,12 @@ const Alert: React.FC<IAlert> = (props) => {
 
   return (
     <div
-      className={clsx(
-        "flex items-center rounded-r-sm border-l-4 p-2 text-white",
-        {
-          "border-info bg-muted": severity === "info",
-          "border-error bg-error-background": severity === "error",
-          "border-success bg-success-background": severity === "success",
-          "border-alert bg-alert-background": severity === "warning",
-        }
-      )}
+      className={clsx("flex items-center rounded-r-md border-l-4 p-2", {
+        "border-info bg-muted": severity === "info",
+        "border-error bg-error-background": severity === "error",
+        "border-success bg-success-background": severity === "success",
+        "border-alert bg-alert-background": severity === "warning",
+      })}
     >
       <span
         className={clsx("mr-3 self-start", {
