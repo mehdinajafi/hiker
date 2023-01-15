@@ -1,5 +1,7 @@
 import React from "react";
 import clsx from "clsx";
+import TextFieldInput from "./TextFieldInput";
+import TextFieldSelect from "./TextFieldSelect";
 import useControllable from "@/hooks/useControllable";
 import ChevronDownIcon from "@/public/icons/chevron-down.svg";
 
@@ -34,7 +36,7 @@ interface ITextField {
    * Callback fired when the value is changed.
    * You can pull out the new value by accessing `event.target.value` (string).
    */
-  onChange?: (e: React.ChangeEvent) => void;
+  onChange?: (e: React.FormEvent) => void;
   /**
    * If `true`, the TextField is displayed in an error state.
    */
@@ -48,10 +50,32 @@ interface ITextField {
    */
   className?: string;
   /**
+   * Start adornment for this component.
+   */
+  startAdornment?: React.ReactNode;
+  /**
+   * End adornment for this component.
+   */
+  endAdornment?: React.ReactNode;
+  /**
    * Content of component. Use in case like when the component is select.
    */
   children?: React.ReactNode;
 }
+
+export const paddingInlineStyles = ({
+  startAdornment,
+  endAdornment,
+}: {
+  startAdornment: ITextField["startAdornment"];
+  endAdornment: ITextField["startAdornment"];
+}) => {
+  return {
+    "pl-10 pr-3": Boolean(startAdornment),
+    "pr-10 pl-3": Boolean(endAdornment),
+    "px-3": !Boolean(startAdornment) && !Boolean(endAdornment),
+  };
+};
 
 const TextField: React.FC<ITextField> = (props) => {
   const {
@@ -66,6 +90,8 @@ const TextField: React.FC<ITextField> = (props) => {
     helperText,
     className,
     select,
+    startAdornment,
+    endAdornment,
     children,
   } = props;
 
@@ -74,11 +100,13 @@ const TextField: React.FC<ITextField> = (props) => {
     defaultValue,
   });
 
-  const isEmpty = value.trim() === "" ? "empty" : "fill";
+  const isEmpty = value.trim() === "";
+  const ariaInvalid = error ? "true" : "false";
   const helperTextId = id && id + "-helper-text";
 
-  const handleOnChange = (e: React.ChangeEvent) => {
+  const handleOnChange = (e: React.FormEvent) => {
     setValue((e.target as HTMLInputElement).value);
+
     if (onChange) {
       onChange(e);
     }
@@ -90,10 +118,11 @@ const TextField: React.FC<ITextField> = (props) => {
         <label
           htmlFor={id}
           className={clsx(
-            "absolute top-2 z-10 px-3 text-xs text-gray-400 transition-all",
+            "absolute top-2 z-10 text-xs text-gray-400 transition-all",
             {
-              "translate-y-1 opacity-0": isEmpty === "empty",
-              "translate-y-0 opacity-100": isEmpty === "fill" || children,
+              "translate-y-1 opacity-0": isEmpty,
+              "translate-y-0 opacity-100": !isEmpty || children,
+              ...paddingInlineStyles({ startAdornment, endAdornment }),
             }
           )}
         >
@@ -102,7 +131,7 @@ const TextField: React.FC<ITextField> = (props) => {
       )}
 
       {!select && (
-        <input
+        <TextFieldInput
           type={type}
           id={id}
           value={value}
@@ -110,42 +139,27 @@ const TextField: React.FC<ITextField> = (props) => {
           onChange={handleOnChange}
           name={name}
           aria-describedby={helperTextId}
-          aria-invalid={error ? "true" : "false"}
-          className={clsx(
-            "relative rounded border",
-            "z-20 w-full bg-transparent px-3 text-sm transition-[border-color]",
-            "focus:border-primary focus:outline-none",
-            {
-              "border-gray-300": !error,
-              "border-rose-600": error,
-              "py-4": isEmpty === "empty",
-              "pt-6 pb-2": isEmpty === "fill",
-            }
-          )}
+          aria-invalid={ariaInvalid}
+          error={error}
+          isEmpty={isEmpty}
+          startAdornment={startAdornment}
+          endAdornment={endAdornment}
         />
       )}
 
       {select && (
-        <select
+        <TextFieldSelect
           id={id}
           name={name}
           value={value}
           onChange={handleOnChange}
           aria-describedby={helperTextId}
-          aria-invalid={error ? "true" : "false"}
-          className={clsx(
-            "w-full rounded border bg-transparent px-3 text-sm",
-            "focus:border-primary focus:outline-none",
-            "appearance-none",
-            {
-              "border-gray-300": !error,
-              "py-4": isEmpty === "empty" || !children,
-              "pt-6 pb-2": isEmpty === "fill" || children,
-            }
-          )}
+          aria-invalid={ariaInvalid}
+          error={error}
+          isEmpty={isEmpty}
         >
           {children}
-        </select>
+        </TextFieldSelect>
       )}
 
       {select && (
