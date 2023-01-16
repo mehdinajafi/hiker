@@ -25,7 +25,12 @@ export interface IFilter {
   filterType: "checkbox" | "switch";
   filterTitle: string;
   filterKey: string;
-  filterOptions: { filterOprionTitle: string; filterOptionId: number }[] | null;
+  filterOptions: IFilterOption[] | null;
+}
+
+export interface IFilterOption {
+  filterOprionTitle: string;
+  filterOptionId: number;
 }
 
 export interface ICategory {

@@ -21,13 +21,13 @@ const SwitchRow: React.FC<ISwitchRow> = (props) => {
       [key]: router.query[key] ? [] : "1",
     };
 
-    if (onChangeProp) {
-      onChangeProp(newQuery);
-    }
-
     router.push({
       query: newQuery,
     });
+
+    if (onChangeProp) {
+      onChangeProp(newQuery);
+    }
   };
 
   return (
@@ -40,8 +40,8 @@ const SwitchRow: React.FC<ISwitchRow> = (props) => {
       </label>
 
       <Switch
-        defaultChecked={Boolean(queryParam)}
         id={filter.filterKey}
+        checked={Boolean(queryParam)}
         onCheckedChange={(e) => handleOnChange(e)}
       />
     </div>
