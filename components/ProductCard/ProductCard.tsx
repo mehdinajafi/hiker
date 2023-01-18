@@ -1,5 +1,6 @@
 import Link from "next/link";
 import clsx from "clsx";
+import BlurImage from "@/components/ui/BlurImage";
 
 interface IProductCard {
   status: "out_of_stock" | "marketable";
@@ -33,20 +34,13 @@ const ProductCard: React.FC<IProductCard> = (props) => {
     >
       <Link href={`/equipment/${slug}`} className="group grid grid-cols-12">
         <div className="col-span-4 p-4 sm:col-span-12">
-          <picture>
-            {images.optimized &&
-              images.optimized.map((image) => (
-                <source key={image.url} srcSet={image.url} type={image.type} />
-              ))}
-            <img
-              src={images.main}
-              alt={title}
-              loading="lazy"
-              width={200}
-              height={295}
-              className="mx-auto h-auto sm:h-44 sm:w-auto"
-            />
-          </picture>
+          <BlurImage
+            src={images.main}
+            alt={title + " image"}
+            width={200}
+            height={295}
+            className="mx-auto h-auto sm:h-44 sm:w-auto"
+          />
         </div>
 
         <div className="col-span-8 flex flex-col p-4 sm:col-span-12 sm:items-center">

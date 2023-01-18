@@ -10,6 +10,7 @@ import useUpdateCartItem from "@/hooks/apis/useUpdateCartItem";
 import sendRequest from "@/utils/sendRequest";
 import { ICartItem } from "@/interfaces";
 import TrashIcon from "@/public/icons/trash.svg";
+import BlurImage from "@/components/ui/BlurImage";
 
 interface ICartItemRow {
   number: number;
@@ -71,7 +72,7 @@ const CartItemRow: React.FC<ICartItemRow> = (props) => {
       <div className="col-span-3 row-span-2 sm:col-span-1">
         <div className="flex items-center">
           <div className="w-14">
-            <Image
+            <BlurImage
               src={cartItem.product.images.main}
               alt="product image"
               width={54}

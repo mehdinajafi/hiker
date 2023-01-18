@@ -1,8 +1,8 @@
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import clsx from "clsx";
 import format from "date-fns/format";
+import BlurImage from "@/components/ui/BlurImage";
 import PageHeader from "@/components/PageHeader";
 import getPost from "@/lib/api/blog/getPost";
 import { IPost, NextPage } from "@/interfaces";
@@ -60,7 +60,7 @@ const BlogPostPage: NextPage<IBlogPostPage> = (props) => {
 
           <div className="col-span-12 md:col-span-8">
             <div className="overflow-hidden rounded-md">
-              <Image
+              <BlurImage
                 src={post.image}
                 alt={post.imageAlt}
                 height={300}

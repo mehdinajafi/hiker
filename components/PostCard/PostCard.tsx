@@ -1,7 +1,7 @@
 import Link from "next/link";
-import Image from "next/image";
 import format from "date-fns/format";
 import { IPost } from "@/interfaces";
+import BlurImage from "@/components/ui/BlurImage";
 
 const PostCard: React.FC<IPost> = (props) => {
   const { time, title, description, image, imageAlt, slug } = props;
@@ -10,7 +10,7 @@ const PostCard: React.FC<IPost> = (props) => {
     <article className="h-full overflow-hidden rounded-lg bg-gray-100 shadow-sm">
       <Link href={`/blog/${slug}`} className="flex h-full flex-col">
         <div className="relative h-52 md:h-40 lg:h-52">
-          <Image
+          <BlurImage
             src={image}
             width={600}
             height={300}

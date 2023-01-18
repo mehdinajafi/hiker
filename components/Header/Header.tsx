@@ -1,10 +1,10 @@
+import Image from "next/image";
 import clsx from "clsx";
 import Navigation from "@/components/Navigation";
 import TwitterIcon from "@/public/icons/twitter.svg";
 import InstagramIcon from "@/public/icons/instagram.svg";
 import ArrowDownIcon from "@/public/icons/arrow_down.svg";
 import HeaderBG from "@/public/images/header-bg.jpg";
-import Image from "next/image";
 
 const Header: React.FC = () => {
   return (

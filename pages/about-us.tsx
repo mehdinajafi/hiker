@@ -1,5 +1,7 @@
 import Head from "next/head";
 import PageHeader from "@/components/PageHeader";
+import BlurImage from "@/components/ui/BlurImage";
+import AboutUsBannerJPG from "@/public/images/aboutus/01.jpg";
 
 const AboutusPage = () => {
   return (
@@ -22,11 +24,9 @@ const AboutusPage = () => {
         <div className="mt-16 h-[200px] md:h-[300px]">
           <picture>
             <source srcSet="/images/aboutus/01.avif" type="image/avif" />
-            <img
-              src="/images/aboutus/01.jpg"
+            <BlurImage
+              src={AboutUsBannerJPG}
               alt="A mountaineer smiles."
-              width={1440}
-              height={465}
               className="h-full object-cover"
               decoding="async"
             />

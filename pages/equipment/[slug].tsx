@@ -1,6 +1,5 @@
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import useSWRMutation from "swr/mutation";
 import { toast } from "react-toastify";
 import useStore from "@/store";
@@ -13,6 +12,7 @@ import sendRequest from "@/utils/sendRequest";
 import { IProduct } from "@/interfaces";
 import PlusIcon from "@/public/icons/plus.svg";
 import StarIcon from "@/public/icons/star-fill.svg";
+import BlurImage from "@/components/ui/BlurImage";
 
 interface IProductPage {
   product: IProduct;
@@ -117,7 +117,7 @@ const ProductPage: React.FC<IProductPage> = (props) => {
 
           <div className="col-span-12 md:col-span-8">
             <div className="flex justify-center md:justify-end">
-              <Image
+              <BlurImage
                 src={product.images.main}
                 alt=""
                 height={500}
