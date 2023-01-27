@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
+import { MotionStyle } from "framer-motion";
 import Portal from "@/components/ui/Portal";
 import Backdrop from "@/components/ui/Backdrop";
 import Slide from "@/components/ui/Slide";
 
-interface IDrawer {
+export interface IDrawer {
   /**
    * If `true`, the component is shown.
    */
@@ -23,11 +24,6 @@ interface IDrawer {
    */
   hide?: "sm" | "md" | "lg" | "xl" | "2xl";
   /**
-   * if `true` drawer take whole page.
-   * @default false
-   */
-  fullWidth?: boolean;
-  /**
    * Always keep the children in the DOM.
    * This prop can be useful in SEO situation.
    * @default false
@@ -40,7 +36,11 @@ interface IDrawer {
   /**
    * A single child content element.
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
+  /**
+   * Props of content component.
+   */
+  ContentProps?: { style: MotionStyle };
 }
 
 const direction: Record<
@@ -57,11 +57,11 @@ const Drawer: React.FC<IDrawer> = (props) => {
   const {
     anchor = "left",
     keepMounted = false,
-    fullWidth = false,
     className,
     hide,
     open,
     onClose,
+    ContentProps,
     children,
   } = props;
 
@@ -104,14 +104,14 @@ const Drawer: React.FC<IDrawer> = (props) => {
         className={clsx(
           "drawer fixed inset-0 z-drawer",
           {
-            hidden: !open && keepMounted && exited,
+            invisible: !open && keepMounted && exited,
           },
           hide && {
-            "sm:hidden": hide === "sm",
-            "md:hidden": hide === "md",
-            "lg:hidden": hide === "lg",
-            "xl:hidden": hide === "xl",
-            "2xl:hidden": hide === "2xl",
+            "sm:invisible": hide === "sm",
+            "md:invisible": hide === "md",
+            "lg:invisible": hide === "lg",
+            "xl:invisible": hide === "xl",
+            "2xl:invisible": hide === "2xl",
           },
           className
         )}
@@ -125,14 +125,8 @@ const Drawer: React.FC<IDrawer> = (props) => {
           onExited={handleExited}
           onEnter={handleEnter}
           unmountOnExit={!keepMounted}
-          className={clsx("drawer--content fixed will-change-transform", {
-            "top-0 left-0 w-full": anchor === "top",
-            "bottom-0 left-0 w-full": anchor === "bottom",
-            "right-0 top-0 h-full": anchor === "right",
-            "left-0 top-0 h-full": anchor === "left",
-            "w-full": fullWidth && (anchor === "right" || anchor === "left"),
-            "h-full": fullWidth && (anchor === "top" || anchor === "bottom"),
-          })}
+          className="drawer--content"
+          {...ContentProps}
         >
           {children}
         </Slide>
