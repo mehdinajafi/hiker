@@ -11,6 +11,7 @@
     "build-storybook": "storybook build -s ./public"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.0.2",
     "@radix-ui/react-radio-group": "^1.1.0",
     "@types/node": "18.11.13",
     "@types/react": "18.0.26",
