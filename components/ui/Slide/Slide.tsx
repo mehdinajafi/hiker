@@ -1,6 +1,8 @@
-import { m, AnimatePresence, Variants } from "framer-motion";
+import React from "react";
+import { m, AnimatePresence, Variants, MotionProps } from "framer-motion";
+import clsx from "clsx";
 
-interface ISlide {
+export interface ISlide extends MotionProps {
   /**
    * If `true`, the component will transition in.
    */
@@ -38,53 +40,53 @@ const variants = (direction: ISlide["direction"]): Variants => {
   switch (direction) {
     case "left":
       return {
-        show: {
+        enter: {
           x: 0,
         },
-        hidden: {
-          x: "100vw",
+        exit: {
+          x: "100%",
         },
       };
     case "right":
       return {
-        show: {
+        enter: {
           x: 0,
         },
-        hidden: {
-          x: "-100vw",
+        exit: {
+          x: "-100%",
         },
       };
     case "up":
       return {
-        show: {
+        enter: {
           y: 0,
         },
-        hidden: {
-          y: "100vh",
+        exit: {
+          y: "100%",
         },
       };
     case "down":
       return {
-        show: {
+        enter: {
           y: 0,
         },
-        hidden: {
-          y: "-100vh",
+        exit: {
+          y: "-100%",
         },
       };
     default:
       return {
-        show: {
+        enter: {
           x: 0,
         },
-        hidden: {
-          x: "100vw",
+        exit: {
+          x: "100%",
         },
       };
   }
 };
 
-const Slide: React.FC<ISlide> = (props) => {
+const Slide = React.forwardRef<HTMLDivElement, ISlide>((props, ref) => {
   const {
     in: inProp,
     direction = "right",
@@ -98,40 +100,49 @@ const Slide: React.FC<ISlide> = (props) => {
     ...otherProps
   } = props;
 
+  const show = unmountOnExit ? inProp && unmountOnExit : true;
+  const animate = inProp || unmountOnExit ? "enter" : "exit";
+
   const handleAnimationStart = (definition: string) => {
-    if (onEnter && definition === "show") {
+    if (onEnter && definition === "enter") {
       onEnter();
     }
   };
 
   const handleAnimationComplete = (definition: string) => {
-    if (onExited && definition === "hidden") {
+    if (onExited && definition === "exit") {
       onExited();
     }
   };
 
-  let element: React.ReactNode | null = (
-    <m.div
-      variants={variants(direction)}
-      initial={"hidden"}
-      animate={inProp ? "show" : "hidden"}
-      exit="hidden"
-      transition={{ damping: 5 }}
-      className={className}
-      onClick={onClick}
-      onAnimationStart={handleAnimationStart}
-      onAnimationComplete={handleAnimationComplete}
-      {...otherProps}
-    >
-      {children}
-    </m.div>
+  return (
+    <AnimatePresence initial={appear}>
+      {show && (
+        <m.div
+          ref={ref}
+          variants={variants(direction)}
+          initial="exit"
+          animate={animate}
+          exit="exit"
+          transition={{ stiffness: 50 }}
+          onClick={onClick}
+          onAnimationStart={handleAnimationStart}
+          onAnimationComplete={handleAnimationComplete}
+          className={clsx(className, "fixed", {
+            "top-0 left-0 w-full": direction === "down",
+            "bottom-0 left-0 w-full": direction === "up",
+            "right-0 top-0 h-full": direction === "left",
+            "left-0 top-0 h-full": direction === "right",
+          })}
+          {...otherProps}
+        >
+          {children}
+        </m.div>
+      )}
+    </AnimatePresence>
   );
+});
 
-  if (unmountOnExit && !inProp) {
-    element = null;
-  }
-
-  return <AnimatePresence initial={appear}>{element}</AnimatePresence>;
-};
+Slide.displayName = "Slide";
 
 export default Slide;

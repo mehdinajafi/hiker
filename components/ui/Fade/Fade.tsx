@@ -1,3 +1,4 @@
+import React from "react";
 import { m, AnimatePresence, Variants } from "framer-motion";
 
 interface IFade {
@@ -30,15 +31,15 @@ interface IFade {
 }
 
 const variants: Variants = {
-  hidden: {
+  exit: {
     opacity: 0,
   },
-  show: {
+  enter: {
     opacity: 1,
   },
 };
 
-const Fade: React.FC<IFade> = (props) => {
+const Fade = React.forwardRef<HTMLDivElement, IFade>((props, ref) => {
   const {
     in: inProp,
     appear = true,
@@ -51,40 +52,44 @@ const Fade: React.FC<IFade> = (props) => {
     ...otherProps
   } = props;
 
+  const show = unmountOnExit ? inProp && unmountOnExit : true;
+  const animate = inProp || unmountOnExit ? "enter" : "exit";
+
   const handleAnimationStart = (definition: string) => {
-    if (onEnter && definition === "show") {
+    if (onEnter && definition === "enter") {
       onEnter();
     }
   };
 
   const handleAnimationComplete = (definition: string) => {
-    if (onExited && definition === "hidden") {
+    if (onExited && definition === "exit") {
       onExited();
     }
   };
 
-  let element: React.ReactNode | null = (
-    <m.div
-      variants={variants}
-      initial="hidden"
-      animate={inProp ? "show" : "hidden"}
-      exit="hidden"
-      transition={{ damping: 5 }}
-      className={className}
-      onClick={onClick}
-      onAnimationStart={handleAnimationStart}
-      onAnimationComplete={handleAnimationComplete}
-      {...otherProps}
-    >
-      {children}
-    </m.div>
+  return (
+    <AnimatePresence initial={appear}>
+      {show && (
+        <m.div
+          ref={ref}
+          variants={variants}
+          initial="exit"
+          animate={animate}
+          exit="exit"
+          transition={{ damping: 5 }}
+          className={className}
+          onClick={onClick}
+          onAnimationStart={handleAnimationStart}
+          onAnimationComplete={handleAnimationComplete}
+          {...otherProps}
+        >
+          {children}
+        </m.div>
+      )}
+    </AnimatePresence>
   );
+});
 
-  if (unmountOnExit && !inProp) {
-    element = null;
-  }
-
-  return <AnimatePresence initial={appear}>{element}</AnimatePresence>;
-};
+Fade.displayName = "Fade";
 
 export default Fade;

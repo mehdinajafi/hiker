@@ -1,5 +1,6 @@
-import clsx from "clsx";
+import React from "react";
 import { m, AnimatePresence, Variants } from "framer-motion";
+import clsx from "clsx";
 
 interface ICollapse {
   /**
@@ -13,7 +14,7 @@ interface ICollapse {
    */
   appear?: boolean;
   /**
-   * className of transition component.
+   * ClassName of transition component.
    */
   className?: string;
   /**
@@ -34,29 +35,29 @@ interface ICollapse {
   onExited?: () => void;
 }
 
-const variants = (orientation: ICollapse["orientation"]) => {
+const variants = (orientation: ICollapse["orientation"]): Variants => {
   if (orientation === "horizontal") {
     return {
-      hidden: {
+      exit: {
         width: 0,
       },
-      show: {
+      enter: {
         width: "auto",
       },
     };
   } else {
     return {
-      hidden: {
+      exit: {
         height: 0,
       },
-      show: {
+      enter: {
         height: "auto",
       },
     };
   }
 };
 
-const Collapse: React.FC<ICollapse> = (props) => {
+const Collapse = React.forwardRef<HTMLDivElement, ICollapse>((props, ref) => {
   const {
     in: inProp,
     appear = true,
@@ -70,39 +71,43 @@ const Collapse: React.FC<ICollapse> = (props) => {
     ...otherProps
   } = props;
 
+  const show = unmountOnExit ? inProp && unmountOnExit : true;
+  const animate = inProp || unmountOnExit ? "enter" : "exit";
+
   const handleAnimationStart = (definition: string) => {
-    if (onEnter && definition === "show") {
+    if (onEnter && definition === "enter") {
       onEnter();
     }
   };
 
   const handleAnimationComplete = (definition: string) => {
-    if (onExited && definition === "hidden") {
+    if (onExited && definition === "exit") {
       onExited();
     }
   };
 
-  let element: React.ReactNode | null = (
-    <m.div
-      variants={variants(orientation)}
-      initial="hidden"
-      animate={inProp ? "show" : "hidden"}
-      exit="hidden"
-      className={clsx("overflow-hidden", className)}
-      onClick={onClick}
-      onAnimationStart={handleAnimationStart}
-      onAnimationComplete={handleAnimationComplete}
-      {...otherProps}
-    >
-      {children}
-    </m.div>
+  return (
+    <AnimatePresence initial={appear}>
+      {show && (
+        <m.div
+          ref={ref}
+          variants={variants(orientation)}
+          initial="exit"
+          animate={animate}
+          exit="exit"
+          className={clsx("overflow-hidden", className)}
+          onClick={onClick}
+          onAnimationStart={handleAnimationStart}
+          onAnimationComplete={handleAnimationComplete}
+          {...otherProps}
+        >
+          {children}
+        </m.div>
+      )}
+    </AnimatePresence>
   );
+});
 
-  if (unmountOnExit && !inProp) {
-    element = null;
-  }
-
-  return <AnimatePresence initial={appear}>{element}</AnimatePresence>;
-};
+Collapse.displayName = "Collapse";
 
 export default Collapse;

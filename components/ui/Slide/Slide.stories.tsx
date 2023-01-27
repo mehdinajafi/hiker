@@ -12,9 +12,7 @@ const meta: Meta<typeof Slide> = {
   component: Slide,
   args: {
     children: (
-      <div className="flex h-12 w-28 items-center justify-center bg-red-400 text-white">
-        Element
-      </div>
+      <div className="h-full w-full bg-red-400 text-white">Element</div>
     ),
   },
   parameters: {
