@@ -1,19 +1,14 @@
 import { Metadata } from "next";
 import Header from "@/components/Header";
 import PostCard from "@/components/PostCard";
-import backend from "@/backend";
+import { getPosts } from "@/queries/Blog";
 
 export const metadata: Metadata = {
   title: "HIKER",
 };
 
 const HomePage = async () => {
-  const postsRes = await backend("/api/posts", {
-    next: {
-      revalidate: 60 * 60,
-    },
-  });
-  const posts = await postsRes.json();
+  const posts = await getPosts();
 
   return (
     <main className="mb-20 -mt-16">
