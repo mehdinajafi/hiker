@@ -37,9 +37,10 @@ const Checkbox: React.FC<ICheckbox> = (props) => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(e.target.checked);
     if (onCheckedChange) {
       onCheckedChange(e);
+    } else {
+      setIsChecked(e.target.checked);
     }
   };
 

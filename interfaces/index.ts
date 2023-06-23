@@ -21,18 +21,6 @@ export interface IProduct {
   slug: string;
 }
 
-export interface IFilter {
-  filterType: "checkbox" | "switch";
-  filterTitle: string;
-  filterKey: string;
-  filterOptions: IFilterOption[] | null;
-}
-
-export interface IFilterOption {
-  filterOprionTitle: string;
-  filterOptionId: number;
-}
-
 export interface ICategory {
   id: number;
   title: string;
