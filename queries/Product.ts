@@ -38,3 +38,9 @@ export const getProducts = async (filters: IGetProductsFilters) => {
   const products: IProduct[] = await productsRes.json();
   return products;
 };
+
+export const getProduct = async ({ slug }: { slug: string }) => {
+  const productRes = await backend(`/api/products/${slug}`);
+  const product: IProduct = await productRes.json();
+  return product;
+};
