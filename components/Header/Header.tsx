@@ -1,6 +1,5 @@
 import Image from "next/image";
 import clsx from "clsx";
-import Navigation from "@/components/Navigation";
 import TwitterIcon from "@/public/icons/twitter.svg";
 import InstagramIcon from "@/public/icons/instagram.svg";
 import ArrowDownIcon from "@/public/icons/arrow_down.svg";
@@ -19,10 +18,8 @@ const Header: React.FC = () => {
         />
       </div>
 
-      <div className="absolute inset-x-0 top-0">
-        <Navigation />
-
-        <div className="container relative mt-32 flex items-center justify-center">
+      <div className="absolute inset-x-0 top-48">
+        <div className="container relative flex items-center justify-center">
           <div
             className={clsx(
               "left-4 mr-8 hidden items-center space-y-8 [writing-mode:vertical-lr]",

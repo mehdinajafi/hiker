@@ -11,6 +11,10 @@
 }
 
 @layer components {
+  .skeleton {
+    @apply animate-pulse bg-gray-400;
+  }
+
   /* --------------- Start Typography --------------- */
   .heading-6xl {
     @apply text-6xl font-bold;

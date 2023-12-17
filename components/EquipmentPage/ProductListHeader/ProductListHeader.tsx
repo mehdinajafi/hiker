@@ -1,18 +1,13 @@
+"use client";
+
 import { useState } from "react";
 import Button from "@/components/ui/Button";
 import FunnelIcon from "@/public/icons/funnel.svg";
 import Drawer from "@/components/ui/Drawer";
 import Filters from "../Filters";
-import { IFilter } from "@/interfaces";
 import XIcon from "@/public/icons/x.svg";
 
-interface IProductListHeader {
-  filters?: IFilter[];
-}
-
-const ProductListHeader: React.FC<IProductListHeader> = (props) => {
-  const { filters } = props;
-
+const ProductListHeader: React.FC = () => {
   const [isFilterDrawerOpen, setFilterDrawerOpen] = useState(false);
 
   const handleFilterDrawerOpen = () => {
@@ -55,7 +50,7 @@ const ProductListHeader: React.FC<IProductListHeader> = (props) => {
           </div>
 
           <div className="px-4">
-            <Filters filters={filters} onChange={handleChangeFilters} />
+            <Filters onChange={handleChangeFilters} />
           </div>
         </div>
       </Drawer>

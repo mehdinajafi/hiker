@@ -1,45 +1,40 @@
 import Divider from "@/components/ui/Divider";
-import FilterRow from "@/components/EquipmentPage/FilterRow";
-import { IFilter } from "@/interfaces";
+import SwitchRow from "./SwitchRow";
+import CheckboxRow from "./CheckboxRow";
 
 interface IFilters {
-  filters?: IFilter[];
-  onChange?: (query: Object) => void;
+  onChange?: () => void;
 }
 
-const Filters: React.FC<IFilters> = (props) => {
-  const { filters, onChange } = props;
-
+const Filters: React.FC<IFilters> = ({ onChange }) => {
   return (
     <div className="">
-      <FilterRow
-        filterType="checkbox"
-        filterTitle="Categories"
-        filterKey="category"
-        filterOptions={[
-          {
-            filterOptionId: 1,
-            filterOprionTitle: "Rucksacks & Bags",
-          },
-          {
-            filterOptionId: 2,
-            filterOprionTitle: "Kitbag",
-          },
-          {
-            filterOptionId: 3,
-            filterOprionTitle: "Stuff Sack",
-          },
-        ]}
+      <CheckboxRow
+        filter={{
+          key: "category",
+          title: "Categories",
+          options: [
+            {
+              value: 1,
+              title: "Rucksacks & Bags",
+            },
+            {
+              value: 2,
+              title: "Kitbag",
+            },
+            {
+              value: 3,
+              title: "Stuff Sack",
+            },
+          ],
+        }}
         onChange={onChange}
       />
 
       <Divider />
 
-      <FilterRow
-        filterType="switch"
-        filterTitle="Only available items"
-        filterKey="has_selling_stock"
-        filterOptions={null}
+      <SwitchRow
+        filter={{ key: "inStock", title: "Only available items" }}
         onChange={onChange}
       />
     </div>
