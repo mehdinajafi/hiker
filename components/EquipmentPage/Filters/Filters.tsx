@@ -5,7 +5,7 @@ import { getCategories } from "@/api/queries/category";
 
 const Filters = async () => {
   const categories = await getCategories();
-  const categoriesOptions = categories.map((category) => ({
+  const categoriesOptions = categories.data.map((category) => ({
     value: category.id,
     title: category.name,
   }));

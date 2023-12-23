@@ -15,7 +15,7 @@ export interface IProduct {
 
 export interface ICategory {
   id: number;
-  title: string;
+  name: string;
 }
 
 export interface IPost {
