@@ -1,17 +1,14 @@
 import ProductsNotFound from "@/components/EquipmentPage/ProductsNotFound";
 import ProductCard from "@/components/ProductCard";
-import { ISearchParams } from "@/interfaces";
 import { getProducts } from "@/api/queries/product";
-import getFirstString from "@/utils/getFirstString";
+import searchParams from "@/utils/searchParams";
 
-interface IProducts {
-  searchParams: ISearchParams;
-}
+const Products = async () => {
+  const urlSearchParams = searchParams();
 
-const Products = async ({ searchParams }: IProducts) => {
   const products = await getProducts({
-    categoryId: getFirstString(searchParams.category),
-    inStock: getFirstString(searchParams.inStock) === "1" ? true : false,
+    categoryId: urlSearchParams.get("category"),
+    inStock: urlSearchParams.get("inStock") === "1" ? true : false,
   });
 
   if (products.data.length === 0) {

@@ -42,7 +42,7 @@ const EquipmentPage = async ({ searchParams }: IEquipmentPage) => {
 
         <div className="col-span-12 lg:col-span-9">
           <Suspense fallback={<ProductsSkeleton />}>
-            <Products searchParams={searchParams} />
+            <Products />
           </Suspense>
         </div>
       </div>

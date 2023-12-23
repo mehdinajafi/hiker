@@ -5,7 +5,7 @@ import { IProduct } from "@/interfaces";
 import { unstable_noStore as noStore } from "next/cache";
 
 export interface IProductsFilters {
-  categoryId?: string;
+  categoryId?: string | null;
   inStock?: boolean;
 }
 
@@ -14,7 +14,7 @@ export const getProducts = async (filters: IProductsFilters = {}) => {
 
   const searchParams = new URLSearchParams();
 
-  if (filters.categoryId) {
+  if (filters.categoryId !== undefined && filters.categoryId !== null) {
     searchParams.set("categoryId", filters.categoryId);
   }
 
