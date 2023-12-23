@@ -2,23 +2,24 @@ import Divider from "@/components/ui/Divider";
 import Alert from "@/components/ui/Alert";
 import BlurImage from "@/components/ui/BlurImage";
 import AddToCartButton from "./_components/AddToCartButton";
-import { getProduct } from "@/queries/Product";
 import StarIcon from "@/public/icons/star-fill.svg";
+import { getProduct } from "@/api/queries/product";
 
 interface IProps {
-  params: { slug: string };
+  params: { id: string };
 }
 
 export const generateMetadata = async ({ params }: IProps) => {
-  const product = await getProduct({ slug: params.slug });
+  const product = await getProduct(params.id);
 
   return {
-    title: product.title + " | HIKER",
+    title: product.data.name + " | HIKER",
   };
 };
 
 const ProductPage = async ({ params }: IProps) => {
-  const product = await getProduct({ slug: params.slug });
+  const product = await getProduct(params.id);
+  const productData = product.data;
 
   return (
     <main className="container mb-16 mt-5 md:my-32">
@@ -26,7 +27,7 @@ const ProductPage = async ({ params }: IProps) => {
         <div className="col-span-1">
           <div className="flex justify-center">
             <BlurImage
-              src={product.images.main}
+              src={productData.image}
               alt=""
               height={500}
               width={300}
@@ -36,37 +37,38 @@ const ProductPage = async ({ params }: IProps) => {
         </div>
 
         <div className="col-span-1">
-          <h2 className="heading-2xl">{product.title}</h2>
+          <h2 className="heading-2xl">{productData.name}</h2>
 
-          <div className="mt-5 flex items-center">
+          {/* <div className="mt-5 flex items-center">
             <StarIcon className="text-yellow-500" aria-hidden />
             <span className="ml-2 text-base font-medium">
-              {((product.rating.rate / 100) * 5).toFixed(1)}
+              {((productData.rating.rate / 100) * 5).toFixed(1)}
             </span>
             <span className="ml-2 text-sm text-gray-500">
-              ({product.rating.count} reviews)
+              ({productData.rating.count} reviews)
             </span>
-          </div>
+          </div> */}
 
-          <p className="mt-4">{product.description}</p>
+          <p className="mt-4">{productData.description}</p>
 
           <div className="my-4">
             <Divider />
           </div>
 
-          {product.status === "out_of_stock" && (
+          {productData.isOutOfStock && (
             <Alert severity="warning">
               This product is not available right now.
             </Alert>
           )}
-          {product.status === "marketable" && (
+
+          {!productData.isOutOfStock && (
             <div className="text-xl font-bold">
-              £{Number(product.price).toFixed(2)}
+              £{Number(productData.price).toFixed(2)}
             </div>
           )}
-          {product.status === "marketable" && (
+          {!productData.isOutOfStock && (
             <div className="mt-4">
-              <AddToCartButton productId={product._id} />
+              <AddToCartButton productId={product.data.id} />
             </div>
           )}
         </div>

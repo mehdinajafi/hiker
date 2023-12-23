@@ -1,42 +1,28 @@
 import Divider from "@/components/ui/Divider";
 import SwitchRow from "./SwitchRow";
 import CheckboxRow from "./CheckboxRow";
+import { getCategories } from "@/api/queries/category";
 
-interface IFilters {
-  onChange?: () => void;
-}
+const Filters = async () => {
+  const categories = await getCategories();
+  const categoriesOptions = categories.map((category) => ({
+    value: category.id,
+    title: category.name,
+  }));
 
-const Filters: React.FC<IFilters> = ({ onChange }) => {
   return (
     <div className="">
       <CheckboxRow
         filter={{
           key: "category",
           title: "Categories",
-          options: [
-            {
-              value: 1,
-              title: "Rucksacks & Bags",
-            },
-            {
-              value: 2,
-              title: "Kitbag",
-            },
-            {
-              value: 3,
-              title: "Stuff Sack",
-            },
-          ],
+          options: categoriesOptions,
         }}
-        onChange={onChange}
       />
 
       <Divider />
 
-      <SwitchRow
-        filter={{ key: "inStock", title: "Only available items" }}
-        onChange={onChange}
-      />
+      <SwitchRow filter={{ key: "inStock", title: "Only available items" }} />
     </div>
   );
 };

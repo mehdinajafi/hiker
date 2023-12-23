@@ -1,45 +1,56 @@
+import prisma from "@/lib/prisma";
+import { Prisma } from "@prisma/client";
 import { NextResponse } from "next/server";
-import db from "@/lib/db";
-import Product from "@/models/Product";
-import { IProduct } from "@/interfaces";
 
-interface IFilter {
-  "category.id"?: {
-    $in: number | number[];
-  };
-  status?: IProduct["status"];
-}
-
-export async function GET(req: Request) {
+export const GET = async (req: Request) => {
   try {
     const url = new URL(req.url);
-    const searchParams = new URLSearchParams(url.search);
+    const searchParams = new URLSearchParams(url.searchParams);
+    const categoryId = searchParams.get("categoryId");
+    const inStock = Boolean(searchParams.get("inStock"));
 
-    const filters: IFilter = {};
+    const filters: Prisma.ProductWhereInput = {};
 
-    const inStock = searchParams.get("inStock");
-    const categoryIds = searchParams.getAll("category");
-
-    if (inStock && inStock === "1") {
-      filters.status = "marketable";
-    }
-
-    if (categoryIds.length) {
-      filters["category.id"] = {
-        $in: categoryIds.map((id) => Number(id)),
+    if (categoryId) {
+      filters.category = {
+        is: {
+          id: Number(categoryId),
+        },
       };
     }
 
-    await db.connect();
-    const products = await Product.find({ ...filters });
-    await db.disconnect();
+    if (inStock) {
+      filters.stockQuantity = {
+        not: 0,
+      };
+    }
 
-    return NextResponse.json(products, {
-      status: 200,
+    const products = await prisma.product.findMany({
+      select: {
+        id: true,
+        name: true,
+        price: true,
+        image: true,
+        category: true,
+        isOutOfStock: true,
+      },
+      where: filters,
     });
+
+    return NextResponse.json(
+      {
+        data: products,
+      },
+      {
+        status: 200,
+      }
+    );
   } catch (error) {
-    return NextResponse.json(error, {
-      status: 500,
-    });
+    return NextResponse.json(
+      { message: "Server Error!" },
+      {
+        status: 500,
+      }
+    );
   }
-}
+};

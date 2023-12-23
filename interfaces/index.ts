@@ -1,24 +1,16 @@
 import { NextPage as NextJSPage } from "next";
 
+export interface ISearchParams {
+  [x: string]: string | string[] | undefined;
+}
+
 export interface IProduct {
-  _id: string;
-  status: "out_of_stock" | "marketable";
-  images: {
-    main: string;
-    optimized: {
-      type: string;
-      url: string;
-    }[];
-  };
-  title: string;
+  id: number;
+  name: string;
   description: string;
-  rating: {
-    count: number;
-    rate: number;
-  };
-  category: ICategory;
   price: number;
-  slug: string;
+  image: string;
+  isOutOfStock: boolean;
 }
 
 export interface ICategory {

@@ -1,4 +1,4 @@
-import { ProductsLoading } from "./Products";
+import ProductsSkeleton from "./_components/ProductsSkeleton";
 
 const Loading = () => {
   return (
@@ -11,7 +11,7 @@ const Loading = () => {
           <div className="skeleton h-5 w-40" />
         </div>
         <div className="col-span-12 lg:col-span-9">
-          <ProductsLoading />
+          <ProductsSkeleton />
         </div>
       </div>
     </div>

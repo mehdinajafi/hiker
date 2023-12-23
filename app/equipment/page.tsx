@@ -3,7 +3,8 @@ import { Metadata } from "next";
 import Filters from "@/components/EquipmentPage/Filters";
 import ProductListHeader from "@/components/EquipmentPage/ProductListHeader";
 import PageHeader from "@/components/PageHeader";
-import Products, { ProductsLoading } from "./Products";
+import Products from "./_components/Products";
+import ProductsSkeleton from "./_components/ProductsSkeleton";
 
 interface IEquipmentPage {
   searchParams: {
@@ -33,13 +34,14 @@ const EquipmentPage = async ({ searchParams }: IEquipmentPage) => {
             <ProductListHeader />
           </div>
           <div className="hidden h-min lg:block">
-            <Filters />
+            <Suspense fallback={<div>load cate</div>}>
+              <Filters />
+            </Suspense>
           </div>
         </div>
 
         <div className="col-span-12 lg:col-span-9">
-          <Suspense fallback={<ProductsLoading />}>
-            {/* @ts-expect-error Server Component */}
+          <Suspense fallback={<ProductsSkeleton />}>
             <Products searchParams={searchParams} />
           </Suspense>
         </div>
