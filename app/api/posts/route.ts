@@ -1,16 +1,15 @@
 import { NextResponse } from "next/server";
-import db from "@/lib/db";
-import Post from "@/models/Post";
+import prisma from "@/lib/prisma";
 
-export async function GET() {
+export const GET = async () => {
   try {
-    await db.connect();
-    const posts = await Post.find().select(
-      "time title description image imageAlt slug"
-    );
-    await db.disconnect();
+    const posts = await prisma.post.findMany({
+      include: { author: true },
+    });
 
-    return NextResponse.json(posts, {
+    const response = { data: posts };
+
+    return NextResponse.json(response, {
       status: 200,
     });
   } catch (error) {
@@ -18,4 +17,4 @@ export async function GET() {
       status: 500,
     });
   }
-}
+};

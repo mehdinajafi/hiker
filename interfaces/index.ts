@@ -19,8 +19,8 @@ export interface ICategory {
 }
 
 export interface IPost {
-  _id: string;
-  time: number;
+  id: number;
+  createdAt: number;
   title: string;
   description: string;
   body: string;
@@ -28,10 +28,10 @@ export interface IPost {
   imageAlt: string;
   slug: string;
   author: {
-    id: string;
-    name: string;
+    id: number;
+    firstName: string;
+    lastName: string;
   };
-  headers: { id: string; title: string }[];
 }
 
 export interface ICart {

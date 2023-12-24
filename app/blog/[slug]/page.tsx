@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { format } from "date-fns";
 import PageHeader from "@/components/PageHeader";
 import BlurImage from "@/components/ui/BlurImage";
-import { getPost } from "@/queries/Blog";
+import { getPost } from "@/api/queries/post";
 
 type PageProps = {
   params: { slug: string };
@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: PageProps) {
   const post = await getPost({ slug: params.slug });
 
   return {
-    title: `${post.title} | HIKER`,
+    title: `${post.data.title} | HIKER`,
   };
 }
 
@@ -25,26 +25,28 @@ const BlogPostPage = async ({ params }: PageProps) => {
         <PageHeader.Breadcrumbs>
           <PageHeader.Link href="/">Home</PageHeader.Link>
           <PageHeader.Link href="/blog">Blog</PageHeader.Link>
-          <PageHeader.Link disabled>{post.title}</PageHeader.Link>
+          <PageHeader.Link disabled>{post.data.title}</PageHeader.Link>
         </PageHeader.Breadcrumbs>
       </PageHeader>
 
       <article className="grid grid-cols-12">
         <div className="col-span-12 mb-8">
           <h2 className="heading-5xl mt-4 font-serif text-primary">
-            {post.title}
+            {post.data.title}
           </h2>
-          <div className="mt-4 text-sm">{post.author.name}</div>
+          <div className="mt-4 text-sm">
+            {post.data.author.firstName} {post.data.author.lastName}
+          </div>
           <time className="mt-2 inline-block text-sm text-gray-500">
-            {format(post.time, "dd MMM yyyy")}
+            {format(new Date(post.data.createdAt), "dd MMM yyyy")}
           </time>
         </div>
 
         <div className="col-span-12 md:col-span-8">
           <div className="overflow-hidden rounded-md">
             <BlurImage
-              src={post.image}
-              alt={post.imageAlt}
+              src={post.data.image}
+              alt={post.data.imageAlt}
               height={300}
               width={500}
               className="w-full object-cover"
@@ -57,12 +59,12 @@ const BlogPostPage = async ({ params }: PageProps) => {
               "prose-headings:font-serif prose-ul:list-disc",
               "prose-a:text-primary-dark prose-a:no-underline hover:prose-a:underline"
             )}
-            dangerouslySetInnerHTML={{ __html: post.body }}
+            dangerouslySetInnerHTML={{ __html: post.data.body }}
           />
         </div>
 
         <div className="col-span-4 hidden md:block">
-          <div className="sticky top-8 pl-10">
+          {/* <div className="sticky top-8 pl-10">
             <h3 className="whitespace-nowrap text-2xl">Table of Contents</h3>
             <ul className="mt-4 flex flex-col space-y-4 text-base text-gray-600">
               {post.headers.map((header) => (
@@ -76,7 +78,7 @@ const BlogPostPage = async ({ params }: PageProps) => {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
         </div>
       </article>
     </main>

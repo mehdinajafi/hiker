@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
 import PostCard from "@/components/PostCard";
-import { getPosts } from "@/queries/Blog";
+import { getPosts } from "@/api/queries/post";
 
 export const metadata: Metadata = {
   title: "Blog | HIKER",
@@ -21,9 +21,9 @@ const BlogPage = async () => {
       </PageHeader>
 
       <div className="mt-16 grid grid-cols-12 gap-5">
-        {posts.map((post) => (
-          <div key={post._id} className="col-span-12 md:col-span-6">
-            <PostCard {...post} />
+        {posts.data.map((post) => (
+          <div key={post.id} className="col-span-12 md:col-span-6">
+            <PostCard post={post} />
           </div>
         ))}
       </div>

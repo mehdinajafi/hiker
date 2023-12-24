@@ -1,17 +1,19 @@
 import { NextResponse } from "next/server";
-import db from "@/lib/db";
-import Post from "@/models/Post";
+import prisma from "@/lib/prisma";
 
 export async function GET(
   req: Request,
   { params }: { params: { slug: string } }
 ) {
   try {
-    await db.connect();
-    const post = await Post.findOne({ slug: params.slug });
-    await db.disconnect();
+    const post = await prisma.post.findUnique({
+      where: { slug: params.slug },
+      include: { author: true },
+    });
 
-    return NextResponse.json(post, {
+    const response = { data: post };
+
+    return NextResponse.json(response, {
       status: 200,
     });
   } catch (error) {

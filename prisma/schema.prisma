@@ -50,3 +50,23 @@ model Category {
   name     String
   products Product[]
 }
+
+model Post {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime
+  title       String
+  description String
+  body        String
+  slug        String   @unique
+  authorId    Int
+  author      PostAuthor   @relation(fields: [authorId], references: [id])
+  image       String
+  imageAlt    String
+}
+
+model PostAuthor {
+  id        Int    @id @default(autoincrement())
+  firstName String
+  lastName  String
+  posts     Post[]
+}

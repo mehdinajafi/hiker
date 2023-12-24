@@ -1,12 +1,15 @@
-"use client";
-
 import Link from "next/link";
 import format from "date-fns/format";
 import { IPost } from "@/interfaces";
 import BlurImage from "@/components/ui/BlurImage";
 
-const PostCard: React.FC<IPost> = (props) => {
-  const { time, title, description, image, imageAlt, slug } = props;
+interface IPostCardProps {
+  post: IPost;
+}
+
+const PostCard = (props: IPostCardProps) => {
+  const post = props.post;
+  const { createdAt, title, description, image, imageAlt, slug } = post;
 
   return (
     <article className="h-full overflow-hidden rounded-lg bg-gray-100 shadow-sm">
@@ -23,7 +26,7 @@ const PostCard: React.FC<IPost> = (props) => {
 
         <div className="flex grow flex-col p-4">
           <time className="text-caption text-gray-500">
-            {format(time, "dd MMM yyyy")}
+            {format(new Date(createdAt), "dd MMM yyyy")}
           </time>
 
           <h3 className="ellipsis-2 heading-xl mt-2 mb-4 font-serif">
