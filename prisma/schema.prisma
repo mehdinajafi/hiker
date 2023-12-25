@@ -53,7 +53,7 @@ model Category {
 
 model Post {
   id          Int      @id @default(autoincrement())
-  createdAt   DateTime
+  createdAt   DateTime @default(now())
   title       String
   description String
   body        String
