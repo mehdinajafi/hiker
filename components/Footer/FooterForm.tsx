@@ -1,63 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef } from "react";
+import { useFormState } from "react-dom";
 import { toast } from "react-toastify";
-import Spinner from "@/components/ui/Spinner";
 import TextField from "@/components/ui/TextField";
-import ArrowRightIcon from "@/public/icons/arrow-right.svg";
-
-interface FormElements extends HTMLFormControlsCollection {
-  email: HTMLInputElement;
-}
-interface INewsLetterForm extends HTMLFormElement {
-  readonly elements: FormElements;
-}
+import { subscribeToNewsletter } from "@/api/actions/subscribeToNewsletter";
+import SubmitButton from "./SubmitButton";
 
 const FooterForm = () => {
-  const [formIsLoading, setFormIsLoading] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+  const [state, formAction] = useFormState(subscribeToNewsletter, null);
+  const formStatus = state?.status;
+  const formToast = state?.toast;
 
-  const handleNewsLetterFormSubmit = async (
-    e: React.FormEvent<INewsLetterForm>
-  ) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    let email = form.elements.email.value;
+  // useEffect(() => {
+  //   if (formRef.current && formStatus === "success") {
+  //     formRef.current?.reset();
+  //   }
+  // }, [formStatus]);
 
-    if (email && email.trim() === "") {
-      toast.error("Please enter a valid email address");
+  useEffect(() => {
+    if (formStatus === "success") {
+      toast(formToast?.title);
     } else {
-      setFormIsLoading(true);
-
-      try {
-        await fetch("/api/subscribe-to-newsletter", {
-          method: "POST",
-          body: JSON.stringify({ email }),
-        });
-        toast.success("Your email has been successfully registered.");
-      } catch (error) {
-        toast.error("Something went wrong! try again.");
-      } finally {
-        setFormIsLoading(false);
-      }
+      toast.error(formToast?.title);
     }
-  };
+  }, [formToast?.id, formToast?.title, formStatus]);
 
   return (
-    <form onSubmit={handleNewsLetterFormSubmit}>
+    <form ref={formRef} action={formAction}>
       <TextField
         name="email"
-        type="email"
         label="Email"
         className="text-white"
-        endAdornment={
-          formIsLoading ? (
-            <Spinner />
-          ) : (
-            <button type="submit">
-              <ArrowRightIcon className="h-4 w-4" />
-            </button>
-          )
-        }
+        endAdornment={<SubmitButton />}
       />
     </form>
   );

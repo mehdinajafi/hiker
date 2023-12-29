@@ -3,6 +3,7 @@
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
 import { LazyMotion, domAnimation } from "framer-motion";
+import ToastContainer from "@/components/ui/ToastContainer";
 import { SWRConfig } from "swr";
 import "@/public/globals.css";
 
@@ -29,6 +30,8 @@ export default function RootLayout({
             <Footer />
           </SWRConfig>
         </LazyMotion>
+
+        <ToastContainer />
       </body>
     </html>
   );

@@ -52,14 +52,14 @@ model Category {
 }
 
 model Post {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
+  id          Int        @id @default(autoincrement())
+  createdAt   DateTime   @default(now())
   title       String
   description String
   body        String
-  slug        String   @unique
+  slug        String     @unique
   authorId    Int
-  author      PostAuthor   @relation(fields: [authorId], references: [id])
+  author      PostAuthor @relation(fields: [authorId], references: [id])
   image       String
   imageAlt    String
 }
@@ -69,4 +69,9 @@ model PostAuthor {
   firstName String
   lastName  String
   posts     Post[]
+}
+
+model NewsletterSubscriber {
+  id    Int    @id @default(autoincrement())
+  email String
 }
